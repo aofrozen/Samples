@@ -1,0 +1,20 @@
+<template name="yt.userFriends">
+    <div class="friend-container">
+        {{#each userFriendsData }}
+        {{#with friend}}
+        <div class="small-list-item default-pointer no-hover-small-list-item friend-item" data-id="{{ userId }}">
+            <div class="user-avatar view-friend pointer" data-userid="{{ userId }}">
+                <img src="{{ userAvatar userId }}" class="">
+            </div>
+            <div class="body">
+                <span class="name view-friend pointer" data-userid="{{ userId }}">{{_fullname userId}}</span>
+
+                <div class="right">{{#if _isOwner userId 1 }}<a href="#" class="btn btn-outline btn-default friend pointer" data-userid="{{_currentProfileId}}" data-friendid="{{ userId }}"><i class="fa fa-check-circle-o"></i> Friend</a> {{/if}}
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        {{/with}}
+        {{/each}}
+    </div>
+</template>

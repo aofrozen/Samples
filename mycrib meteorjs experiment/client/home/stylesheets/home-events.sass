@@ -1,0 +1,17 @@
+@import '../../client/stylesheets/mixins'
+@import '../../client/stylesheets/placeholders'
+.hosting-events, .following-events
+  @extend %container
+  .heading
+    @extend %lg-font, %bold
+    +mar(10px)
+  .small-list-item
+    @extend %pointer
+    +bor-b(1px solid #CCC)
+    +pad(15px)
+    .event-name
+      @extend %fLeft, %bold, %med-font
+      +w(70%)
+    .event-date
+      @extend %fLeft, %bold, %med-font
+      +w(30%)

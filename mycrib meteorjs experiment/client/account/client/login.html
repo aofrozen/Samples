@@ -1,0 +1,15 @@
+<template name="login">
+    <div class="login-container">
+        <div class="main">
+        {{#if currentUser }}
+        <div style="text-align: center">Loading...</div>
+        {{else}}
+        {{#if loginMessage }}
+        {{ loginMessage }}
+        {{/if}}
+        {{> quickForm id="login-form" schema=sc.userLoginForm buttonContent="Log in"}}
+        <div><a href="/i/password-recovery">Forgot password?</a></div>
+        {{/if}}
+        </div>
+    </div>
+</template>

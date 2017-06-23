@@ -1,0 +1,186 @@
+@import '../../client/stylesheets/mixins'
+@import '../../client/stylesheets/placeholders'
+@import '../../client/stylesheets/variables'
+.my-drop-zone
+  border: dotted 3px lightgray
+  .nv-file-over
+    border: dotted 3px red /* Default class applied to drop zones on over */
+  .another-file-over-class
+    border: dotted 3px green
+
+  html, body
+    height: 100%
+
+  canvas
+    background-color: #f3f3f3
+    -webkit-box-shadow: 3px 3px 3px 0 #e3e3e3
+    -moz-box-shadow: 3px 3px 3px 0 #e3e3e3
+    box-shadow: 3px 3px 3px 0 #e3e3e3
+    border: 1px solid #c3c3c3
+    height: 100px
+    margin: 6px 0 0 6px
+.upload-photo-container
+  padding: 15px
+.uploaded-file-count
+  margin: 25px auto 25px auto
+  font-size: 36px
+.photo-container
+  /* max-width: 1024px */
+  //margin: 40px auto
+  .photo-plus-popover
+    width: 120px
+    li:hover
+      background-color: #E2E2E2
+    ul
+      padding: 0
+      list-style: none
+      position: relative
+      margin: 0
+    li
+      display: block
+      float: none
+      position: relative
+      a
+        color: #000
+        display: block
+        padding: 10px
+        text-decoration: none
+  .content
+    /* background-color: #FFF */
+    /* border-radius: 6px */
+    //.header
+
+    .body
+      .photo-nav
+        max-width: 500px
+        margin: auto
+        text-align: center
+        padding: 10px
+      .photo-items
+        a:link
+          text-decoration: none
+        li
+          transition: 100ms
+          float: left
+          margin: 2px
+          list-style: none
+          width: 32%
+          img
+            width: 100%
+        li:hover
+          //transform: scale(1.2)
+        .album-name
+          font-size: 18px
+          text-align: center
+          color: #000
+        .album-photo
+          text-align: center
+          span
+            display: block
+    //.footer
+
+
+
+.photo-dialog
+  position: relative
+  max-width: 1700px
+  width: 80%
+  margin: 50px auto auto auto
+  @media screen and (max-width: 800px)
+    padding-right: 0px
+  @media screen and (min-width: 801px)
+    padding-right: 350px
+  .next-photo-item
+    position: absolute
+    top: 50%
+    right: -50px
+    font-size: 36px
+    color: #FFF
+    text-align: right
+  .previous-photo-item
+    position: absolute
+    top: 50%
+    left: -50px
+    font-size: 36px
+    color: #FFF
+  //@media screen and (min-width: 801px)
+  .photo-width
+    img
+      width: 100%
+  .photo-height
+    img
+      width: 100% //FIXME: fix height soon
+  .photo-viewer
+    box-sizing: border-box
+    position: relative
+    background-color: #000000
+    text-align: center
+    height: inherit
+  .photo-details
+    @media screen and (max-width: 800px)
+      margin-top: 0px
+      width: 100%
+
+    @media screen and (min-width: 801px)
+      border-radius: 0px
+      width: 350px
+      //display: inline-block
+      vertical-align: top
+      position: absolute
+      top: 0px
+      right: 0px
+      box-sizing: border-box
+      margin: 0px
+      height: 100%
+      min-height: 450px
+      overflow: hidden
+    padding: 0
+    background-color: #FFF
+    .edit-photo-form
+      padding: 10px
+    .comment-container
+      overflow: auto
+      height: calc(100% - 180px)
+    .edit-tools
+      padding: 5px
+      position: absolute
+      right: 0px
+    .details-container
+      //border-bottom: 1px solid #CCC
+      .header
+        min-height: 50px
+        padding: 5px
+        .username
+          font-size: 16px
+          color: #959595
+        .date
+          font-size: 16px
+          color: #959595
+          display: inline-block
+          vertical-align: top
+        .name
+          font-size: 16px
+          vertical-align: top
+          display: inline-block
+          margin-left: 10px
+        .avatar
+          border: 4px #FFF solid
+          border-radius: 100%
+          width: 58px
+          height: 58px
+          background-color: #FF7E7E
+          display: inline-block
+          //+box-shadow(1px 1px 1px rgba(210, 210, 210, 0.59))
+          .img-circle
+            width: 50px
+            height: 50px
+        .clear
+          clear: both
+      .caption
+        padding: 10px
+        font-size: 18px
+        font-weight: normal
+.photo-plus-popover
+  ul
+    padding: 0
+    list-style: none

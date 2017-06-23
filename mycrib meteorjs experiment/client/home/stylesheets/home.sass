@@ -1,0 +1,165 @@
+@import '../../client/stylesheets/mixins'
+@import '../../client/stylesheets/placeholders'
+.home
+  margin-top: 80px
+  .follow-friends
+    background-color: #464648
+    top: 0
+    bottom: 0
+    position: fixed
+    width: 200px
+    overflow-y: hidden
+    color: white
+    .heading
+      font-size: 18px
+      margin: 10px
+      display: block
+    li
+      border-bottom: 1px solid #6b6969
+      a
+        color: white
+      a:link
+        color: white
+        padding: 10px
+        display: block
+      a:hover
+        background-color: #28282a
+        text-decoration: none
+        color: white
+    ul
+      padding: 0
+/* Feeds */
+.feed-container
+  /* margin-left: 200px */
+
+.home-feed
+  position: relative
+  top: 0
+  max-width: 600px
+  width: 95%
+  margin: auto
+  .clear
+    margin: 80px auto 0 auto
+
+  .item
+    position: relative
+    max-width: 600px
+    background-color: white
+    border: 1px solid #dfdfdf
+    //@include box-shadow(0px, 0px, 5px, rgba(0, 0, 0, 0.2))
+    margin: 25px auto 0 auto
+    border-radius: 3px
+    padding-top: 15px
+    padding-bottom: 15px
+    .feed-item-popover
+      width: 170px
+      li:hover
+        background-color: #e2e2e2
+      ul
+        padding: 0
+        list-style: none
+        position: relative
+
+      li
+        display: block
+        float: none
+        position: relative
+        a
+          color: black
+          display: block
+          padding: 10px
+          text-decoration: none
+    .thumbnail
+      background: none
+      border: none
+      a
+        img
+          width: 100%
+    .close
+      margin: 0 20px 0 0
+      opacity: 1
+    .close:hover
+      opacity: 1
+    .header
+      min-height: 70px
+      margin-left: 15px
+      .dropdown-options
+        float: right
+        margin-right: 15px
+      .username
+        font-size: 16px
+        color: #959595
+      .info
+        display: inline-block
+        margin-left: 10px
+        .date
+          font-size: 16px
+          color: #959595
+
+        .name
+          font-size: 16px
+      .clear
+        clear: both
+    .body
+      padding: 15px
+      font-size: 20px
+      font-weight: 200
+      white-space: pre-line
+      word-wrap: break-word
+    .footer
+      padding-left: 15px
+  .post
+    position: relative
+    margin: 10px auto 0 auto
+    max-width: 800px
+    min-height: 180px
+    border-radius: 3px
+    border: 1px solid #dfdfdf
+    background-color: whitesmoke
+    //+box-shadow(1px 1px 1px rgba(210, 210, 210, 0.59))
+    .thumbnail
+      background: none
+      border: none
+      a
+        img
+          width: 100%
+    .header
+      padding: 15px
+      min-height: 93px
+      .username
+        font-size: 16px
+        color: #959595
+
+      .info
+        display: inline-block
+        margin-left: 10px
+        .date
+          font-size: 16px
+          color: #959595
+        .name
+          font-size: 16px
+      .clear
+        clear: both
+    .insert-options
+      margin-top: 20px
+
+    .post-btn
+      margin-top: 20px
+    .body
+      background-color: #fff
+      min-height: 90px
+      font-size: 20px
+      padding: 10px
+      font-weight: 200
+      border: none
+      border-radius: 0
+    .body:focus
+      border: 3px solid rgba(154, 203, 239, 0.6)
+      outline-width: 0
+      outline: none
+    .footer
+      padding: 10px
+    .col-left
+      position: absolute
+      top: 10px
+      left: 10px

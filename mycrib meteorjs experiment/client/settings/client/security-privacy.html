@@ -1,0 +1,9 @@
+<template name="securityPrivacySettings">
+    <div class="nav-clear"></div>
+    <div class="settings-container">
+        {{> settingsSideNavigation }}
+        <div class="settings-form">
+            {{> quickForm id="security-privacy-settings-form" doc=securityPrivacyData type="method" meteormethod="settings.updateSecurityPrivacy" schema=sc.securityPrivacySettingsForm buttonContent="Save Changes" }}
+        </div>
+    </div>
+</template>

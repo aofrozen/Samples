@@ -1,0 +1,214 @@
+=box-shadow($top, $left, $blur, $color, $inset: false)
+  @if $inset
+    -webkit-box-shadow: inset $top $left $blur $color
+    -moz-box-shadow: inset $top $left $blur $color
+    box-shadow: inset $top $left $blur $color
+  @else
+    -webkit-box-shadow: $top $left $blur $color
+    -moz-box-shadow: $top $left $blur $color
+    box-shadow: $top $left $blur $color
+
+
+
+=text-field
+  display: inline-block
+  outline: none
+  text-decoration: none
+  font: 14px/100% Arial, Helvetica, sans-serif
+  padding: .5em
+  text-shadow: 0 1px 1px rgba(0,0,0,.3)
+  +rounded()
+  +box-shadow(0, 1px, 2px, rgba(0, 0, 0, 0.2))
+
+
+=button($color: $red, $text_color: $white)
+  display: inline-block
+  outline: none
+  cursor: pointer
+  text-align: center
+  text-decoration: none
+  font: 14px/100% Arial, Helvetica, sans-serif
+  padding: .5em 2em .55em
+  text-shadow: 0 1px 1px rgba(0,0,0,.3)
+  +rounded()
+  +box-shadow(0, 1px, 2px, rgba(0, 0, 0, 0.2))
+
+  color: $text_color !important
+  font-weight: bold
+  border: solid 1px darken($color, 18%)
+  background: $color
+  +gradient(saturate($color, 15%), darken($color, 15%))
+
+  &:hover
+    text-decoration: none
+    background: saturate($color, 10%)
+    +gradient(saturate($color, 5%), darken($color, 5%))
+
+
+  &:active
+    position: relative
+    top: 1px
+    color: saturate($color, 15%)
+    +gradient(saturate($color, 15%), lighten($color, 15%))
+
+
+
+=rounded($radius: 0.5em)
+  -webkit-border-radius: $radius
+  -moz-border-radius: $radius
+  border-radius: $radius
+
+
+=gradient($from, $to)
+  background: -webkit-gradient(linear, left top, left bottom, from($from), to($to))
+  background: -moz-linear-gradient(top,  $from, $to)
+  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#$from', endColorstr='#$to')
+
+
+=bottom-radius($radius)
+  -moz-border-bottom-left-radius: $radius
+  -webkit-border-bottom-left-radius: $radius
+  border-bottom-left-radius: $radius
+  -moz-border-bottom-right-radius: $radius
+  -webkit-border-bottom-right-radius: $radius
+  border-bottom-right-radius: $radius
+
+
+=top-radius($radius)
+  -moz-border-top-left-radius: $radius
+  -webkit-border-top-left-radius: $radius
+  border-top-left-radius: $radius
+  -moz-border-top-right-radius: $radius
+  -webkit-border-top-right-radius: $radius
+  border-top-right-radius: $radius
+
+
+=b-radius($radius)
+  -moz-border-radius: $radius
+  -webkit-border-radius: $radius
+  border-radius: $radius
+
+
+=max-w($width)
+  max-width: $width
+
+
+=max-h($height)
+  max-height: $height
+
+
+=min-h($height)
+  min-height: $height
+
+
+=min-w($width)
+  min-width: $width
+
+
+=w($width)
+  width: $width
+
+
+=h($height)
+  height: $height
+
+
+=t($top)
+  top: $top
+
+
+=l($left)
+  left: $left
+
+
+=r($right)
+  right: $right
+
+
+=b($bottom)
+  bottom: $bottom
+
+
+=pad-t($padding)
+  padding-top: $padding
+
+
+=pad($padding)
+  padding: $padding
+
+
+=pad-b($padding)
+  padding-bottom: $padding
+
+
+=pad-l($padding)
+  padding-left: $padding
+
+
+=pad-r($padding)
+  padding-right: $padding
+
+
+=mar-t($margin)
+  margin-top: $margin
+
+
+=mar-b($margin)
+  margin-bottom: $margin
+
+
+=mar-l($margin)
+  margin-left: $margin
+
+
+=mar-r($margin)
+  margin-right: $margin
+
+
+=mar($margin)
+  margin: $margin
+
+
+=bk-color($color)
+  background-color: $color
+
+
+=bor($data)
+  border: $data
+
+
+=bor-b($data)
+  border-bottom: $data
+
+
+=bor-t($data)
+  border-top: $data
+
+
+=bor-r($data)
+  border-right: $data
+
+
+=bor-l($data)
+  border-left: $data
+
+
+=co($color)
+  color: $color
+
+
+=cur($cursor)
+  cursor: $cursor
+
+
+=z($z-index)
+  z-index: $z-index
+
+
+=op($opacity)
+  opacity: $opacity
+
+
+=transform($transform)
+  transform: $transform
+

@@ -1,0 +1,92 @@
+<template name="photoPreview">
+  <div class="photo-dialog" id="photo-dialog">
+    <div class="previous-photo-item noselect pointer">
+      <span class="previous-arrow noselect glyphicon glyphicon-chevron-left"></span>
+    </div>
+    <div class="next-photo-item noselect pointer">
+      <span class="next-arrow noselect glyphicon glyphicon-chevron-right "></span>
+    </div>
+    <div class="photo-viewer">
+      <img class="photo noselect" id="photo-item" src="{{photo}}">
+    </div>
+    <div class="photo-details">
+      {{#with photoUser}}
+        {{#if _isOwner userId }}
+          <div class="edit-tools text-right">
+            <!--
+                        <a href="#" class="edit-photo-btn btn btn-default-blank" data-id="{{photoId}}">Edit
+                            Photo</a> <a href="#" class="remove-photo-btn btn btn-default-blank"
+                                         data-id="{{photoId}}">Delete Photo</a> <a href="#"
+                                                                                   class="set-cover-btn btn btn-default-blank">Set
+                        photo as album cover</a> -->
+          </div>
+        {{/if}}
+      {{/with}}
+      <div class="details-container">
+        {{#with photoUser}}
+          {{#if _isOwner userId }}
+            <ul class="edit-tools dropdown-options text-right dropdown-toggle">
+              <li>
+                <a aria-expanded="false" aria-haspopup="true" class="btn btn-default-blank" data-toggle="dropdown" href="#">
+                  <span class="glyphicon glyphicon-chevron-down"></span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right">
+                  <li>
+                    <a class="edit-photo-btn btn btn-default-blank" data-id="{{photoId}}" href="#">Edit Photo</a>
+                  </li>
+                  <li>
+                    <a class="remove-photo-btn btn btn-default-blank" data-id="{{photoId}}" href="#">Delete Photo</a>
+                  </li>
+                  <li>
+                    <a class="set-cover-btn btn btn-default-blank" href="#">Set photo as album cover</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          {{/if}}
+          {{#if isPhotoEditable }}
+          <div class="edit-photo-form">
+          <form name="edit-photo-form" method="post">
+            <div class="form-group">
+                <label for="albums">Select a photo album</label>
+                <select class="form-control" id="albums">
+                    {{#each albumNames }}
+                    <option value="{{albumName}}" {{selectedAlbumName}}>{{albumName}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="newAlbum">Create a new album</label>
+                <input type="text" class="form-control" id="newAlbum">
+            </div>
+            <div class="form-group">
+              <label for="caption">Caption</label>
+              <input class="form-control" id="caption" name="caption" type="text" value="{{caption}}">
+            </div>
+            <input class="btn btn-primary" type="submit" value="Save Changes"> <input class="btn btn-default cancel-edit-photo-form-btn" type="button" value="Cancel">
+          </form>
+        </div>
+            {{else}}
+            <div class="header">
+              <div class="user-avatar">
+                <img class="profile-link-btn pointer" data-id="{{userId}}" src="{{userAvatar userId}}">
+              </div>
+              <div class="name">
+                <span class="profile-link-btn pointer" data-id="{{userId}}">{{_fullname userId}}</span>
+              </div>
+              <div class="date">
+                {{_dateFormat creationDate}}
+              </div>
+            </div>
+            <div class="caption">{{{emoji caption}}}</div>
+          {{/if}}
+        {{/with}}
+      </div>
+      {{#unless isPhotoEditable }}
+      <div class="comment-container">
+        {{> reComments comments=comments serviceId=photoId serviceName='photo' parentUserId=photoUserId commentCount=commentCount}}
+      </div>
+      {{/unless}}
+    </div>
+  </div>
+</template>

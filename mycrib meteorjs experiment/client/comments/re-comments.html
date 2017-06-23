@@ -1,0 +1,75 @@
+<template name="reComments">
+  {{initData}}
+  <div class="response-options">
+<!-- Like & Share -->
+  </div>
+    <div class="comments">
+        <div class="comment-post">
+          <form action="" method="post" name="comment-form">
+            <div class="small-avatar">
+                <img src="{{ userAvatar _userId}}">
+            </div>
+              <input class="form-control comment-field" type="text" placeholder="Write a comment..."
+                     data-id="{{serviceId}}">
+</form>
+        </div>
+        {{#each comments}}
+            <div class="comment-items">
+                <div class="comment-user">
+                    <div class="small-avatar">
+                        <a href="/{{userId}}"><img src="{{ userAvatar userId }}" class=""></a>
+                    </div>
+                    <a href="/{{userId}}">
+                        <div>{{_fullname userId }}</div>f
+                    </a></div>
+                <div class="comment-body">
+                    <div class="comment">{{{emoji body}}}</div>
+                    <div class="comment-footer">
+                        <a href="#" class="reply-comment  btn btn-default-blank"
+                           data-id="{{_id}}">Reply</a> {{#if _isOwner userId '0' parentUserId}}<a href="#"
+     data-id="{{_id}}" class="remove-comment"><span
+                            class="glyphicon glyphicon-remove"></span></a>{{/if}}
+                        <span class="date">{{_dateAgo creationDate}}</span></div>
+                    <div class="comment-post hidden comment-{{_id}}">
+                      <form method="post" action="" name="reply-comment-form" class="reply-comment-form">
+                        <input class="form-control reply-comment-field" type="text" placeholder="Write a reply..."
+                               data-id="{{_id}}">
+                             </form>
+                    </div>
+                </div>
+                {{#each replyComments}}
+                    <div class="comment-items reply-comment-item">
+                        <div class="comment-user">
+                            <div class="small-avatar">
+                                <a href="/{{userId}}"><img src="{{ userAvatar userId }}" class=""></a>
+                            </div>
+                            <a href="/{{userId}}">
+                                <div>{{_fullname userId }}</div>
+                            </a></div>
+                        <div class="comment-body">
+                            <div class="comment">{{{emoji body}}}</div>
+                            <div class="comment-footer">
+                                <a href="#" class="reply-comment  btn btn-default-blank"
+                                   data-id="{{_id}}">Reply</a> {{#if _isOwner userId '0' parentUserId}}<a href="#"
+                                                                                          class="remove-comment btn btn-default-blank"
+                                                                                          data-id="{{_id}}"><span
+                                    class="glyphicon glyphicon-remove"></span></a>{{/if}}
+                                <span class="date">{{_dateAgo creationDate}}</span></div>
+
+                            <div class="comment-post hidden comment-{{_id}}">
+                              <form method="post" action="" name="reply-comment-form" class="reply-comment-form">
+                                <input class="form-control reply-comment-field" type="text"
+                                       placeholder="Write a reply..." data-id="{{_id}}">
+                                       </form>
+                            </div>
+
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
+        {{/each}}
+        {{#if moreComments }}
+            <div class="more-comments pointer" data-id="{{serviceId}}"><b>{{loadedCommentCount}} of {{commentCount}} View more comments</b></div>
+        {{/if}}
+    </div>
+</template>

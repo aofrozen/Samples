@@ -1,0 +1,33 @@
+<template name="messageInbox">
+    <div class="message-inbox-container">
+    {{# if messageInboxExists }}
+        {{#each messageInbox }}
+            <div class="small-list-item" data-id="{{ _id }}" data-userid="{{ fromUserId }}">
+                <div class="user-avatar">
+                    <img src="{{ userAvatar fromUserId }}" class="">
+                </div>
+                <div class="body">
+                    <div class="name">
+                        {{#with fromUser }}
+                            {{fullname}}
+                        {{/with}}
+                    </div>
+                    <div class="date">
+                        {{ _dateFormat lastMessageDate }}
+                    </div>
+                    <div class="clearfix"></div>
+                    <div>
+                        {{{emoji lastMessage }}}
+                    </div>
+                    <div class="text-right new">{{#unless isRead }}<i class="fa fa-circle"></i>{{/unless}}</div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        {{/each}}
+    {{else}}
+        <div class="simple-message">
+            No messages
+        </div>
+    {{/if}}
+    </div>
+</template>

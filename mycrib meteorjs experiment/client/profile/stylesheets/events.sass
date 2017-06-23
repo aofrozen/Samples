@@ -1,0 +1,11 @@
+@import '../../client/stylesheets/mixins'
+@import '../../client/stylesheets/placeholders'
+.user-events-container
+  +h(100%)
+  .modal-scrollable
+    +h(calc(100% - 95px))
+.small-list-item
+  .event-name
+    @extend %med-font, %bold
+  .event-date
+    @extend %black, %med-font

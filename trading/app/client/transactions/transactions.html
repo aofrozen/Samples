@@ -1,0 +1,33 @@
+<template name="transactions">
+    <div class="container">
+    <div class="text-center"><h2>Transactions History</h2></div>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <td>Time</td>
+            <td>Type</td>
+            <td>Instrument</td>
+            <td>Units</td>
+            <td>Side</td>
+            <td>Price</td>
+            <td>P/L</td>
+            <td>Balance</td>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each transactions}}
+            <tr>
+                <td>{{time}}</td>
+                <td>{{type}}</td>
+                <td>{{instrument}}</td>
+                <td>{{units}}</td>
+                <td>{{side}}</td>
+                <td>{{price}}</td>
+                <td>${{pl}}</td>
+                <td>${{accountBalance}}</td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+    </div>
+</template>

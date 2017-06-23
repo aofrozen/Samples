@@ -1,0 +1,7 @@
+<template name="homeTimeline">
+
+        {{> reTimeline timelineData=timelineData }}
+    {{#if isTimelineLoaded}}
+        {{> loader }}
+    {{/if}}
+</template>

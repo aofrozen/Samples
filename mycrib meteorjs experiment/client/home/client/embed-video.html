@@ -1,0 +1,68 @@
+<template name="embedVideo">
+    <div class="embed-modal-heading">
+        <div class="close-modal close-icon click-modal-close"><i class="fa fa-close"></i></div>
+        <div class="clear-both"></div>
+    </div>
+    <div class="embed-modal-video">
+        {{{embedHTML}}}
+    </div>
+    <div class="embed-modal-readable-container">
+    <div class="embed-video-title">
+        {{embedTitle}}
+    </div>
+        <div class="caption"></div>
+        <div class="header">
+            <div class="user-avatar">
+                <a href="/{{_urlname hostUserId}}" class="click-modal-close"><img src="{{userAvatar hostUserId }}"></a>
+            </div>
+            <span class="remove-timeline-post pointer" data-id="{{_id}}"><span class="glyphicon glyphicon-trash"></span></span>
+            <div class="info">
+                <div><div class="name"><a href="/{{hostUserId}}" class="click-modal-close">{{ _fullname _userId }}</a></div></div>
+                <div class="date">
+                    {{_dateFormat embedDate}}
+                </div>
+            </div>
+        </div>
+        <div class="body">{{{emoji hostCaption }}}</div>
+        <div class="comments-container">
+            <div class="comments">
+                <div class="comment-post">
+                    <input class="form-control comment-field" type="text" placeholder="Write a comment..." data-id="{{timelineId}}">
+                </div>
+                {{#each comments}}
+                <div class="comment-items">
+                    <div class="comment-user">
+                        <div class="user-avatar">
+                            <a href="/{{ _urlname userId}}" class="click-modal-close"><img src="{{ userAvatar userId }}" class=""></a>
+                        </div>
+                        <a href="/{{ _urlname userId}}" class="click-modal-close"><div>{{_fullname userId }}</div></a></div>
+                    <div class="comment-body"><div class="comment">{{#link}}{{{emoji body}}}{{/link}}</div>
+                        <div class="comment-footer"> <a href="#" class="reply-comment  btn btn-default-outline" data-id="{{_id}}">Reply</a> {{#if _isOwner userId }}<a href="#" class="remove-comment  btn btn-default-outline" data-id="{{_id}}"><span class="glyphicon glyphicon-remove"></span></a>{{/if}} <span class="date">{{_dateFormat creationDate}}</span></div>
+                        <div class="comment-post hidden comment-{{_id}}">
+                            <input class="form-control reply-comment-field" type="text" placeholder="Write a reply..." data-id="{{_id}}">
+                        </div>
+                    </div>
+                    {{#each replyComments}}
+                    <div class="comment-items reply-comment-item">
+                        <div class="comment-user">
+                            <div class="user-avatar">
+                                <a href="/{{ _urlname userId}}" class="click-modal-close"><img src="{{ userAvatar userId }}" class=""></a>
+                            </div>
+                            <a href="/{{ _urlname userId}}" class="click-modal-close"><div>{{_fullname userId }}</div></a></div>
+                        <div class="comment-body"><div class="comment">{{#link}}{{{emoji body}}}{{/link}}</div>
+                            <div class="comment-footer"> <a href="#" class="reply-comment  btn btn-default-outline" data-id="{{_id}}">Reply</a> {{#if _isOwner userId }}<a href="#" class="remove-comment  btn btn-default-outline" data-id="{{_id}}"><span class="glyphicon glyphicon-remove"></span></a>{{/if}} <span class="date">{{_dateFormat creationDate}}</span></div>
+                            <div class="comment-post hidden comment-{{_id}}">
+                                <input class="form-control reply-comment-field" type="text" placeholder="Write a reply..." data-id="{{_id}}">
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+                {{/each}}
+                {{#if moreComments }}
+                <div class="more-comments pointer" data-id="{{_id}}"><b>View more comments</b></div>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</template>

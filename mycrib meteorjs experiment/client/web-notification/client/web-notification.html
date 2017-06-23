@@ -1,0 +1,107 @@
+<template name="webNotifications">
+    <div class="web-notifications-container">
+        {{#if webNotificationsExist }}
+        {{#each webNotifications }}
+        {{#if isFriendRequest }}
+        <div class="small-list-item web-notification no-hover-small-list-item default-pointer">
+            <div class="user-avatar pointer view-friend" data-userid="{{fromUserId}}" data-notification-id="{{_id}}">
+                <img src="{{ userAvatar fromUserId }}">
+            </div>
+            <div class="body">
+                <b class="pointer view-friend" data-userid="{{fromUserId}}">{{_fullname fromUserId}}</b> wants to be your friend
+                <div class="options">
+                    <a href="#" class="btn btn-success btn-outline accept-friend-request" data-id="{{_id}}">Accept</a>
+                    <a href="#"
+                       class="btn btn-danger btn-outline reject-friend-request" data-id="{{_id}}">Reject</a></div>
+                <div class="date">{{_dateAgo creationDate}}</div>
+            </div>
+            <div class="text-right new">{{#unless isRead }}<i class="fa fa-circle"></i>{{/unless}}
+                <span class="hidden glyphicon glyphicon-trash pointer" aria-hidden="true" id="remove-item" data-id="{{_id}}"></span>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        {{/if}}
+        {{#if isPhotoComment }}
+        <div class="small-list-item web-notification photo-comment-btn" data-notification-id="{{_id}}" data-id="{{ targetId }}">
+            <div class="user-avatar">
+                <img src="/img/purple.jpg">
+            </div>
+            <div class="body">
+                <span style="font-weight:bold;">{{_fullname fromUserId}}</span> commented on your photo.
+                <div class="date">{{_dateAgo creationDate}}</div>
+            </div>
+            <div class="text-right new">{{#unless isRead }}<i class="fa fa-circle"></i>{{/unless}}
+                <span class="hidden glyphicon glyphicon-trash pointer" aria-hidden="true" id="remove-item" data-id="{{_id}}"></span>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        {{/if }}
+        {{#if isTimelineComment }}
+        <div class="small-list-item web-notification timeline-comment-btn" data-id="{{ targetId }}" data-notification-id="{{_id}}">
+            <div class="user-avatar">
+                <img src="{{userAvatar fromUserId}}">
+            </div>
+            <div class="body">
+                <span style="font-weight:bold;">{{_fullname fromUserId}}</span> commented on your post.
+                <div class="date">{{_dateAgo creationDate}}</div>
+            </div>
+            <div class="text-right new">{{#unless isRead }}<i class="fa fa-circle"></i>{{/unless}}
+                <span class="hidden glyphicon glyphicon-trash pointer" aria-hidden="true" id="remove-item" data-id="{{_id}}"></span>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        {{/if}}
+        {{#if isTimelineReplyComment }}
+        <div class="small-list-item web-notification timeline-comment-btn" data-id="{{ targetId }}" data-notification-id="{{_id}}">
+            <div class="user-avatar">
+                <img src="{{userAvatar fromUserId}}">
+            </div>
+            <div class="body">
+                <span style="font-weight:bold;">{{_fullname fromUserId}}</span> replied to your comment on post.
+                <div class="date">{{_dateAgo creationDate}}</div>
+            </div>
+            <div class="text-right new">{{#unless isRead }}<i class="fa fa-circle"></i>{{/unless}}
+                <span class="hidden glyphicon glyphicon-trash pointer" aria-hidden="true" id="remove-item" data-id="{{_id}}"></span>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        {{/if}}
+        {{#if isPhotoReplyComment }}
+        <div class="small-list-item web-notification timeline-comment-btn" data-id="{{ targetId }}" data-notification-id="{{_id}}">
+            <div class="user-avatar">
+                <img src="{{userAvatar fromUserId}}">
+            </div>
+            <div class="body">
+                <span style="font-weight:bold;">{{_fullname fromUserId}}</span> replied to your comment on photo post.
+                <div class="date">{{_dateAgo creationDate}}</div>
+            </div>
+            <div class="text-right new">{{#unless isRead }}<i class="fa fa-circle"></i>{{/unless}}
+                <span class="hidden glyphicon glyphicon-trash pointer" aria-hidden="true" id="remove-item" data-id="{{_id}}"></span>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        {{/if}}
+        {{#if isProfileComment }}
+        <div class="small-list-item web-notification profile-comment-btn" data-id="{{ targetId }}" data-notification-id="{{_id}}">
+            <div class="user-avatar">
+                <img src="{{userAvatar fromUserId}}">
+            </div>
+            <div class="body">
+                <span style="font-weight:bold;">{{_fullname fromUserId}}</span> commented on your profile.
+                <div class="date">{{_dateAgo creationDate}}</div>
+            </div>
+            <div class="text-right new">{{#unless isRead }}<i class="fa fa-circle"></i>{{/unless}}
+                <span class="hidden glyphicon glyphicon-trash pointer" aria-hidden="true" id="remove-item" data-id="{{_id}}" onclick="return false;"></span>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        {{/if}}
+
+        {{/each }}
+        {{else}}
+        <div class="simple-message">
+            No notifications
+        </div>
+        {{/if}}
+    </div>
+</template>

@@ -1,0 +1,229 @@
+@import mixins.sass
+@import variables.sass
+
+%caption 
+  font-size: $caption-font-size
+  color: $caption-color
+
+
+%fullModalScreen 
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  z-index: 10
+  background-color: rgba(255, 255, 255, 0.9)
+  overflow: auto
+  transition: 500ms
+
+
+%fullScreen 
+  height: 100%
+  width: 100%
+
+
+%fWidth 
+  width: 100%
+
+
+%fHeight 
+  height: 100%
+
+
+/* floats */
+%fRight 
+  float: right
+
+
+%fLeft 
+  float: left
+
+
+/* simple */
+%hidden 
+  visibility: hidden
+
+
+%bold 
+  font-weight: bold
+
+
+%thin 
+  font-weight: 200
+
+
+%thinner 
+  font-weight: 100
+
+
+%center 
+  margin: auto
+
+
+%cover 
+  background-size: cover
+
+
+%relative 
+  position: relative
+
+
+%absolute 
+  position: absolute
+
+
+%fixed 
+  position: fixed
+
+
+%text-center 
+  text-align: center
+
+
+%text-left 
+  text-align: left
+
+
+%text-right 
+  text-align: right
+
+
+%inline-block 
+  display: inline-block
+
+
+%no-pad-mar 
+  padding: 0px
+  margin: 0px
+
+
+%no-text-decoration 
+  text-decoration: none
+
+
+%block 
+  display: block
+
+%thin-margin
+  margin: $thin-margin
+
+%med-margin 
+  margin: $med-margin
+
+
+/* border */
+%gray-border 
+  border: 1px solid $gray
+
+
+/* cursor */
+%pointer 
+  cursor: pointer
+
+
+/* radius */
+%normal-radius 
+  border-radius: 6px
+
+
+/* background */
+%bk-white 
+  background-color: $white
+
+
+%bk-black 
+  background-color: $pure_black
+
+
+%bk-gray 
+  background-color: $gray
+
+
+/* color */
+%white 
+  color: $white
+
+
+%black 
+  color: $black
+
+
+%dark-gray 
+  color: $dark-gray
+
+
+%gray 
+  color: $gray
+
+
+%green 
+  color: $green
+
+
+%orange 
+  color: $orange
+
+
+%red 
+  color: $red
+
+
+%blue 
+  color: $blue
+
+
+%purple 
+  color: $purple
+
+
+/* simple fonts */
+%super-sm-font 
+  font-size: $super-small
+
+
+%sm-font 
+  font-size: $small
+
+
+%med-font
+  font-size: $medium
+
+
+%lg-font 
+  font-size: $large
+
+
+%super-lg-font 
+  font-size: $super-large
+
+
+%super-x-lg-font 
+  font-size: $super-x-large
+
+
+/* Templates */
+%heading 
+  .heading 
+    @extend %super-lg-font
+    @extend %bold
+    margin-bottom: 15px
+  
+
+
+
+%container 
+  margin: auto
+  padding: 0px
+  max-width: $container-width
+
+
+%account-container 
+  margin: auto
+  width: $small-container-width
+
+
+%half-content 
+  width: 5 / 10 * 100%
+  float: left
+  height: 100%

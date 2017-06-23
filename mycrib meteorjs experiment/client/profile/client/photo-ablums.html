@@ -1,0 +1,28 @@
+<template name="yt.profilePhotoAlbums">
+    <div class="profile-child-container">
+        <div class="photo-container">
+            <div class="content">
+                <div class="body">
+                    <div class="photo-nav">
+                        <div class="btn-group" role="group">
+                            <a class="btn btn-default" href="/{{_urlname _currentProfileId}}/allphotos">All Photos</a>
+                            <a class="btn btn-default" href="/{{_urlname _currentProfileId}}/albums">Albums</a>
+                        </div>
+                        {{#if _isOwner _currentProfileId }}<a class="btn btn-default upload-btn">Upload Photo</a>{{/if}}
+                    </div>
+                    <div view="photo-content">
+                        <div class="photo-items">
+                            <ul>
+                                {{#each photoAlbums }}
+                                    <li>
+                                        <a href="/{{_urlname _currentProfileId}}/photos/{{albumName}}"><div class='album-photo'><img src="{{ thumbnailUrl }}"><span class="album-name">{{albumName}}</span></div></a>
+                                    </li>
+                                {{/each}}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,111 @@
+@import mixins.sass
+@import placeholders.sass
+@import variables.sass
+
+.footer 
+  max-width: 700px
+  margin: auto
+
+
+.not-found-container 
+  max-width: 700px
+  margin: auto
+  text-align: center
+  font-size: 26px
+  font-weight: bold
+
+
+html 
+  height: 100%
+
+
+body 
+  width: 100%
+  height: 100%
+
+
+.main-container 
+  @extend %absolute
+  +t(0px)
+  +l(0px)
+  +r(0px)
+  +b(0px)
+  height: 100%
+
+
+.label-as-badge 
+  border-radius: 1em
+
+
+.left-panel 
+  @extend %fixed, %hidden
+  +bk-color(rgba(255, 19, 19, 0.81))
+  transition: 100ms
+  +z(10001)
+  +l(-256px)
+  +w(256px)
+  +h(100%)
+  overflow-y: auto
+  -webkit-overflow-scrolling: touch
+  +pad(15px)
+  ul 
+    list-style: none
+  
+  a 
+    @extend %white, %lg-font, %thin, %no-text-decoration, %block
+    +pad(5px)
+  
+  .close-nav 
+    @extend %fRight, %super-lg-font, %white, %bold, %pointer
+  
+  .logo 
+    @extend %text-center, %fWidth
+    a 
+      @extend %bold, %super-lg-font
+    
+  
+
+
+.right-panel 
+  @extend %fixed
+  transition: 100ms
+  +z(10000)
+  +r(-256px)
+  +w(256px)
+  +h(100%)
+  -webkit-overflow-scrolling: touch
+  border-left: 1px solid #cccccc
+  .online-users-content 
+    @extend %hidden, %bk-white, %fHeight
+    overflow: auto
+  .small-list-item
+    +min-h(40px)
+  .online-users-btn 
+    @extend %pointer, %bk-white, %super-lg-font, %absolute
+    +z(102)
+    +t(50%)
+    +l(-49px)
+    border-top-left-radius: 6px
+    border-bottom-left-radius: 6px
+    +w(50px)
+    +pad(7px)
+    box-shadow: -2px 0px 3px 0px rgba(0, 0, 0, 0.1)
+  
+  .online 
+    @extend %green, %fRight
+  
+  .offline 
+    @extend %gray, %fRight
+  
+
+
+.content-panel 
+  @extend %absolute
+  +w(100%)
+  +h(100%)
+  z-index: 0
+  transition: 300ms
+
+
+.normal-font-size
+  @extend %med-font

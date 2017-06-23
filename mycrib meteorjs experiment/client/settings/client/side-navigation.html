@@ -1,0 +1,16 @@
+<template name="settingsSideNavigation">
+    <div class="side-navigation">
+        <ul>
+            <li><a href="/i/settings/account" class="{{isActiveRoute 'accountSettings'}}">Account</a></li>
+            <!-- <li><a href="#" class="location-settings-btn {{mb_isActiveRoute 'locationSettings'}}">Location</a></li> -->
+            <li><a href="/i/settings/password" class="{{isActiveRoute 'passwordSettings'}}">Password</a></li>
+            <!--  <li><a href="#" class="mobile-settings-btn {{mb_isActiveRoute 'mobileSettings'}}">Mobile</a></li> -->
+            <li><a href="/i/settings/design" class="{{isActiveRoute 'designSettings'}}">Design</a></li>
+            <li><a href="/i/settings/about" class="{{isActiveRoute 'aboutSettings'}}">About</a></li> <!-- class="about-settings-btn {{mb_isActiveRoute 'aboutSettings'}}"> -->
+            <li><a href="/i/settings/email-notifications" class="{{isActiveRoute 'emailNotificationsSettings'}}">Email Notifications</a></li>
+            <li><a href="/i/settings/privacy" class="{{isActiveRoute 'securityPrivacySettings'}}">Privacy</a></li>
+            <!-- <li><a href="#" class="web-notifications-settings-btn {{mb_isActiveRoute 'webNotificationsSettings'}}">Web Notifications</a></li> -->
+            <li><a href="/i/settings/blocked-accounts" class="{{isActiveRoute 'blockedAccountsSettings'}}">Blocked Accounts</a></li>
+        </ul>
+    </div>
+</template>

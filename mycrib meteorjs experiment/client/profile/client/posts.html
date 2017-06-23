@@ -1,0 +1,13 @@
+<template name="yt.posts">
+    <div class="options text-center" id="options">
+        <a href="/{{ _urlname _currentProfileId}}/" class="btn btn-lg btn-default-blank">{{commentCount}} Comments</a>
+        <a href="/{{ _urlname _currentProfileId}}/timeline" class="btn btn-lg btn-default-blank">Timeline</a>
+        <!-- a href="/{{ _urlname _currentProfileId}}/journal" class="btn btn-lg btn-default-blank">Journal</a> -->
+    </div>
+    {{#if isActiveRoute 'userTimeline'}}
+    {{> profileTimeline }}
+    {{/if}}
+    {{#if isActiveRoute 'userProfile'}}
+    {{> classicComments }}
+    {{/if}}
+</template>

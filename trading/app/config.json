@@ -1,0 +1,13 @@
+{"platforms": [
+{
+"platform": "Wink",
+"name": "Wink",
+"client_id": "YOUR_WINK_API_CLIENT_ID",
+"client_secret": "YOUR_WINK_API_CLIENT_SECRET",
+"username": "scvjustin@gmail.com",
+"password": "Jclt68689!",
+"hide_groups": ["garage_doors", "thermostats"],
+"hide_ids": [],
+"fan_ids": []
+}
+]};

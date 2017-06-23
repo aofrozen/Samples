@@ -1,0 +1,134 @@
+<template name="game">
+    <div class="row">
+        <div class="form-group">
+            <label for="balance">Balance</label>
+            <input type="text" class="form-control balance" placeholder="Balance" id="balance">
+        </div>
+    <div class="form-group">
+        <label for="cPair">Currency Pair</label>
+        <select name="cPair" id="cPair" class="form-control cPair">
+            <option value="EURUSD">EURUSD</option>
+            <option value="USDCAD">USDCAD</option>
+            <option value="GBPUSD">GBPUSD</option>
+            <option value="EURCAD">EURCAD</option>
+            <option value="GBPUSD">GBPUSD**</option>
+            <option value="EURGBP">EURGBP</option>
+            <option value="GBPCAD">GBPCAD</option>
+            <option value="GBPJPY">GBPJPY</option>
+            <option value="AUDJPY">AUDJPY</option>
+            <option value="EURJPY">EURJPY</option>
+            <option value="AUDUSD">AUDUSD</option>
+            <option value="USDJPY">USDJPY</option>
+            <option value="USDCHF">USDCHF</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="spread">Spread</label>
+        <input type="text" class="form-control" placeholder="Spread Pips" id="spread">
+    </div>
+    <input type="button" class="btn btn-primary btn-lg start-btn" value="Start">
+    <input type="button" class="btn btn-danger btn-lg stop-btn" value="Stop">
+    </div>
+    <div class="row">
+        <div class="col-xs-4 text-center">
+            <h3>${{balance}}</h3>
+            <h4>Balance</h4>
+        </div>
+        <div class="col-xs-4 text-center">
+            <h3>3/5</h3>
+            <h4>Win/Loss Count</h4>
+        </div>
+        <div class="col-xs-4 text-center">
+            <h3>322/32</h3>
+            <h4>Win/Loss Pips</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="form-group">
+                <label for="takeProfitPips">TP Pips</label>
+                <input type="text" class="form-control takeProfit" placeholder="Take Profit Pips" id="takeProfitPips">
+            </div>
+            <div class="form-group">
+                <label for="stopLossPips">SL Pips</label>
+                <input type="text" class="form-control stoploss" placeholder="Stoploss Pips" id="stopLossPips">
+            </div>
+            <div class="form-group">
+                <label for="limitPips">Limit Pips</label>
+                <input type="text" class="form-control limit" placeholder="Limit Pips" id="limitPips">
+            </div>
+            <div class="form-group">
+                <label for="riskPercent">Risk Percent</label>
+                <input type="text" class="form-control riskPercent" placeholder="Risk Percent" id="riskPercent">
+            </div>
+            <div class="form-group">
+                <label for="unitPercent">Unit Percent</label>
+                <input type="text" class="form-control unitPercent" placeholder="Unit Percent" id="unitPercent">
+            </div>
+            <div class="form-group">
+                <label for="leverage">Leverage</label>
+                <input type="text" class="form-control leverage" placeholder="Leverage" id="leverage">
+            </div>
+            <input type="button" class="btn btn-success btn-lg sell-trade-btn" value="Sell Trade">
+            <input type="button" class="btn btn-success btn-lg buy-trade-btn" value="Buy Trade">
+            <input type="button" class="btn btn-default btn-lg skip-trade-btn" value="Skip Trade">
+        </div>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th class="col-xs-1">Date</th>
+            <th class="col-xs-1">High-Low Pip</th>
+            <th class="col-xs-1">High-Close Pip</th>
+            <th class="col-xs-1">Low-Close Pip</th>
+            <th class="col-xs-1">Open-High Pip</th>
+            <th class="col-xs-1">Open-Low Pip</th>
+            <th class="col-xs-1">Open-Close Pip</th>
+            <th class="col-xs-1">Ratio</th>
+            <th class="col-xs-1">HLOrder</th>
+            <th class="col-xs-1">HL Map</th>
+            <th class="col-xs-1">Low-Low Pip</th>
+            <th class="col-xs-1">High-High Pip</th>
+            <th class="col-xs-1">Middle Pip</th>
+        </tr>
+        </thead>
+        <tbody>
+    {{#each analyzedData}}
+        <tr style="background-color:#e6ffe6;">
+            <td class="col-xs-1">{{formatDate date}}</td>
+            <td class="col-xs-1">{{highLowPip}} pips</td>
+            <td class="col-xs-1">{{{formatPips highClosePip lowClosePip highLowPip 'red'}}}</td>
+            <td class="col-xs-1">{{{formatPips lowClosePip highClosePip highLowPip 'green'}}}</td>
+            <td class="col-xs-1">{{{formatPips openHighPip openLowPip highLowPip 'green'}}}</td>
+            <td class="col-xs-1">{{{formatPips openLowPip openHighPip highLowPip 'red'}}}</td>
+            <td class="col-xs-1">{{{formatPips openClosePip false highLowPip}}} ({{openPrice}}/O)</td>
+            <td class="col-xs-1">{{{ratio}}}R</td>
+            <td class="col-xs-1">{{#with HLOrder}}{{HLOrder}}/{{localPips}} pips/{{sHours}}H/{{hours}}H
+                Later/{{{favor}}}{{/with}}</td>
+            <td class="col-xs-1">{{#with HLCount}}{{rChart}}{{/with}}</td>
+            <td class="col-xs-1">{{{formatPips lowLowPip false false}}}</td>
+            <td class="col-xs-1">{{{formatPips highHighPip false false}}}</td>
+            <td class="col-xs-1">{{{formatPips middlePip false false }}}</td>
+            {{ setLoading @index}}
+        </tr>
+        {{#each HLOCZ}}
+            <tr style="background-color:#ffffcc;">
+                <td class="col-xs-1">{{loc}}</td>
+                <td class="col-xs-1">{{hl}}</td>
+                <td class="col-xs-1"></td>
+                <td class="col-xs-1"></td>
+                <td class="col-xs-1">{{{formatPips oh ol hl 'green'}}}<br>{{HLOrderFilter 'high' hlOrder}}<br> {{hhr}} hour(s)</td>
+                <td class="col-xs-1">{{{formatPips ol oh hl 'red'}}}<br> {{HLOrderFilter 'low' hlOrder}}<br> {{lhr}} hour(s)</td>
+                <td class="col-xs-1">{{{formatPips oc false hl}}}</td>
+                <td class="col-xs-1"></td>
+                <td class="col-xs-1"></td>
+                <td class="col-xs-1"></td>
+                <td class="col-xs-1"></td>
+                <td class="col-xs-1"></td>
+                <td class="col-xs-1"></td>
+            </tr>
+        {{/each}}
+    {{/each}}
+        </tbody>
+    </table>
+</template>

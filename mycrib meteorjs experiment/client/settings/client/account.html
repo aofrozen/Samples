@@ -1,0 +1,9 @@
+<template name="accountSettings">
+    <div class="nav-clear"></div>
+    <div class="settings-container">
+        {{> settingsSideNavigation }}
+        <div class="settings-form">
+        {{> quickForm id="account-settings-form" schema=sc.accountSettingsForm buttonContent="Save Changes" doc=accountData }}
+        </div>
+    </div>
+</template>

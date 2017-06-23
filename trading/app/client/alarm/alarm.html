@@ -1,0 +1,198 @@
+<template name="alarm">
+    <div class="container">
+        <div class="alarm-container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <input type="button" class="btn btn-outline btn-primary btn-lg create-alarm-forms-btn" value="Create Alarm">
+                </div>
+            </div>
+            <div class="row alarm-lists">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                <th>Status</th>
+                <th>Name</th>
+                <th>Instrument</th>
+                <th>Price</th>
+                <th>Touch</th>
+                <td></td>
+                </tr>
+                </thead>
+                <tbody>
+                {{#each alarmItems}}
+                <tr>
+                    <td>
+                        {{status isEnabled}}
+                    </td>
+                    <td>{{alarmName}}</td>
+                    <td>{{instrument}}</td>
+                    <td>{{pricePosition}} ({{direction priceRangeDirection}})</td>
+                    <td>{{touch isTouched}}</td>
+                    <td>
+                        <input type="button" id="{{_id}}" class="btn-outline btn-success btn enable-alarm-btn" value="Enable">
+                        <input type="button" id="{{_id}}"  class="btn-outline btn-danger btn disable-alarm-btn" value="Disable">
+                        <input type="button" id="{{_id}}"  class="btn-outline btn-primary btn reset-alarm-btn" value="Reset Alarm">
+                        <input type="button" id="{{_id}}"  class="btn-outline btn-primary btn test-alarm-btn" value="Test Alarm">
+                        <input type="button" id="{{_id}}"  class="btn-outline btn-default btn edit-alarm-btn" value="Edit">
+                        <input type="button" id="{{_id}}"  class="btn-outline btn-danger btn remove-alarm-btn" value="Remove">
+                    </td>
+                </tr>
+                {{/each}}
+                </tbody>
+            </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="edit-alarm-modal" tabindex="-1" role="dialog">
+    {{#each alarmObj}}
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Alarm</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="alarm-name">Alarm Name</label>
+                        <input type="text" class="form-control alarm-name" id="alarmName" placeholder="Alarm name..." value="{{alarmName}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="instrument">Instrument</label>
+                        <select name="instrument" id="instrument" class="form-control instrument">
+                            <option value="EUR_USD" selected="{{selectInstrument 'EUR_USD'}}">EURUSD</option>
+                            <option value="USD_CAD" selected="{{selectInstrument 'USD_CAD'}}">USDCAD</option>
+                            <option value="GBP_USD" selected="{{selectInstrument 'GBP_USD'}}">GBPUSD</option>
+                            <option value="EUR_CAD" selected="{{selectInstrument 'EUR_CAD'}}">EURCAD</option>
+                            <option value="EUR_GBP" selected="{{selectInstrument 'EUR_GBP'}}">EURGBP</option>
+                            <option value="GBP_CAD" selected="{{selectInstrument 'GBP_CAD'}}">GBPCAD</option>
+                            <option value="GBP_JPY" selected="{{selectInstrument 'GBP_JPY'}}">GBPJPY</option>
+                            <option value="AUD_JPY" selected="{{selectInstrument 'AUD_JPY'}}">AUDJPY</option>
+                            <option value="EUR_JPY" selected="{{selectInstrument 'EUR_JPY'}}">EURJPY</option>
+                            <option value="AUD_USD" selected="{{selectInstrument 'AUD_USD'}}">AUDUSD</option>
+                            <option value="USD_JPY" selected="{{selectInstrument 'USD_JPY'}}">USDJPY</option>
+                            <option value="USD_CHF" selected="{{selectInstrument 'USD_CHF'}}">USDCHF</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="price-position">Price Position [Current: {{priceAction}})]</label>
+                        <input type="text" class="form-control price-position" placeholder="Ex: 1.3242" value="{{pricePosition}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="price-range-direction">Price Range Direction: {{smartPriceRangeDirection}}</label>
+                        <input type="hidden" class="price-range-direction">
+                    </div>
+                    <div class="form-group">
+                        <label for="alarm-attempt-max">Alarm Attempt Max</label>
+                        <input type="text" class="form-control alarm-attempt-max" id="alarm-attempt-max" placeholder="Ex: 5" value="{{alarmAttemptMax}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="alarm-attempt-duration">Alarm Attempt Duration</label>
+                        <input type="text" class="form-control alarm-attempt-duration" id="alarm-attempt-duration" placeholder="Ex: 180" value="{{alarmAttemptDuration}}">
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label><input type="checkbox" class="enable-light-alarm" {{isChecked isLightEnabled}}>Enable Light Alarm</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="light-name">Light Name</label>
+                        <input type="text" class="form-control light-name" placeholder="Light name..." value="{{lightName}}">
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label><input type="checkbox" class="enable-text-alarm" {{isChecked isTextEnabled}}>Enable Text Alarm</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="text-numbers">Text Numbers</label>
+                        <input type="text" class="form-control text-numbers" placeholder="Ex: 18005556666" value="{{textNumbers}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="text-message">Text Message</label>
+                        <input type="text" class="form-control text-message" id="text-message" placeholder="Text message..." value="{{textMessage}}">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="{{_id}}" class="btn btn-outline btn-success save-alarm-changes-btn">Save</button>
+                    <button type="button" class="btn btn-outline btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    {{/each}}
+    </div>
+
+    <div class="modal fade" id="create-alarm-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Create Alarm</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="alarm-name">Alarm Name</label>
+                        <input type="text" class="form-control alarm-name" placeholder="Alarm name...">
+                    </div>
+                    <div class="form-group">
+                        <label for="instrument">Instrument</label>
+                        <select name="instrument" id="instrument" class="form-control instrument">
+                            <option value="EUR_USD" selected="{{selectInstrument 'EUR_USD'}}">EURUSD</option>
+                            <option value="USD_CAD" selected="{{selectInstrument 'USD_CAD'}}">USDCAD</option>
+                            <option value="GBP_USD" selected="{{selectInstrument 'GBP_USD'}}">GBPUSD</option>
+                            <option value="EUR_CAD" selected="{{selectInstrument 'EUR_CAD'}}">EURCAD</option>
+                            <option value="EUR_GBP" selected="{{selectInstrument 'EUR_GBP'}}">EURGBP</option>
+                            <option value="GBP_CAD" selected="{{selectInstrument 'GBP_CAD'}}">GBPCAD</option>
+                            <option value="GBP_JPY" selected="{{selectInstrument 'GBP_JPY'}}">GBPJPY</option>
+                            <option value="AUD_JPY" selected="{{selectInstrument 'AUD_JPY'}}">AUDJPY</option>
+                            <option value="EUR_JPY" selected="{{selectInstrument 'EUR_JPY'}}">EURJPY</option>
+                            <option value="AUD_USD" selected="{{selectInstrument 'AUD_USD'}}">AUDUSD</option>
+                            <option value="USD_JPY" selected="{{selectInstrument 'USD_JPY'}}">USDJPY</option>
+                            <option value="USD_CHF" selected="{{selectInstrument 'USD_CHF'}}">USDCHF</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="price-position">Price Position [Current: {{priceAction}})]</label>
+                        <input type="text" class="form-control price-position" placeholder="Ex: 1.3242">
+                    </div>
+                    <div class="form-group">
+                        <label for="price-range-direction">Price Range Direction: {{smartPriceRangeDirection}}</label>
+                        <input type="hidden" class="price-range-direction">
+                    </div>
+                    <div class="form-group">
+                        <label for="alarm-attempt-max">Alarm Attempt Max</label>
+                        <input type="text" class="form-control alarm-attempt-max" id="alarm-attempt-max" placeholder="Ex: 5">
+                    </div>
+                    <div class="form-group">
+                        <label for="alarm-attempt-duration">Alarm Attempt Duration</label>
+                        <input type="text" class="form-control alarm-attempt-duration" id="alarm-attempt-duration" placeholder="Ex: 180">
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label><input type="checkbox" class="enable-light-alarm">Enable Light Alarm</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="light-name">Light Name</label>
+                        <input type="text" class="form-control light-name" placeholder="Light name...">
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label><input type="checkbox" class="enable-text-alarm">Enable Text Alarm</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="text-numbers">Text Numbers</label>
+                        <input type="text" class="form-control text-numbers" placeholder="Ex: 18005556666">
+                    </div>
+                    <div class="form-group">
+                        <label for="text-message">Text Message</label>
+                        <input type="text" class="form-control text-message" placeholder="Text message...">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline btn-success create-alarm-btn">Create</button>
+                    <button type="button" class="btn btn-outline btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

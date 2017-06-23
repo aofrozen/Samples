@@ -1,0 +1,78 @@
+@import '../../client/stylesheets/mixins'
+@import '../../client/stylesheets/placeholders'
+
+@keyframes message-animation
+  0%
+    opacity: 0
+  100%
+    opacity: 1
+
+.direct-message-container
+  +max-w(1200px)
+  @extend %fHeight, %center, %bk-white, %normal-radius
+  @media only screen and (min-width: 481px)
+    .main-message-inbox .main .name
+      float: right
+  @media only screen and (max-width: 480px)
+    .mini-message-inbox
+      display: none
+      .main .name
+        float: none
+  .direct-message
+    @extend %fHeight
+    .talk
+      @extend %fLeft
+      +h(100%)
+      @media only screen and (min-width: 481px)
+        +w((7/10)*100%)
+      @media only screen and (max-width: 480px)
+        +w(100%)
+      .message-form
+        +h(100%)
+      .chat
+        +h(calc(100% - 40px))
+        @extend %bk-white
+        border-top-right-radius: 6px
+        border-bottom-right-radius: 6px
+        +pad(15px)
+        overflow-y: auto
+        .user
+          @extend %pointer
+        .message
+          +pad-b(10px)
+          .from-user
+            +bk-color(rgba(64, 175, 255, 0.16))
+          .to-user
+            +bk-color(#EFEFEF)
+          .small-avatar
+            +w(45px)
+            +max-w(45px)
+            //img
+              //+w(100%)
+              //+max-w(50px)
+            .message-date 
+              @extend %gray
+          .user-message
+            +w(80%)
+            +pad-l(10px)
+            +b-radius(10px)
+            +pad(0px)
+            .body
+              word-wrap: break-word
+              border-radius: 6px
+              +pad(7px 10px 7px 10px)
+              display: inline-block
+
+      .send
+        @extend %bk-white
+        +pad-l(15px)
+        +pad-r(15px)
+  .direct-message
+    .mini-message-inbox
+      @extend %fLeft, %fHeight
+      +w((3/10)*100%)
+      +bk-color(#FBFBFB )
+      overflow-y: auto 
+      border-right: 1px solid #CCC 
+      .small-list-item .body
+        @extend %sm-font

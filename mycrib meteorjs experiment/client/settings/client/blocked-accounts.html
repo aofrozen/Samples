@@ -1,0 +1,21 @@
+<template name="blockedAccountsSettings">
+    <div class="nav-clear"></div>
+    <div class="settings-container">
+        {{> settingsSideNavigation }}
+        <div class="settings-form">
+            {{#each blockAccountsData}}
+            <div class="small-list-item no-hover-small-list-item">
+                <div class="user-avatar">
+                    <img src="{{userAvatar blockedUserId}}">
+                </div>
+                <div class="body">
+                    <div><b>{{fullname blockedUserId}}</b></div>
+                    <div class="options">
+                        <a href="#" class="btn btn-success btn-outline unblock-btn" data-id="{{blockedUserId}}">Unblock</a>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</template>

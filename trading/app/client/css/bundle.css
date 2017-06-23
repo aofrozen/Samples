@@ -1,0 +1,611 @@
+
+.alarm-container {
+  padding: 10px; }
+
+.alarm-lists {
+  margin-top: 20px; }
+
+/* floats */
+/* simple */
+.s-alert-box {
+  text-align: center; }
+
+/* border */
+/* cursor */
+/* radius */
+/* background */
+/* color */
+/* simple fonts */
+/* Templates */
+.s-alert-box,
+.s-alert-box * {
+  box-sizing: border-box; }
+
+.s-alert-box {
+  position: fixed;
+  background: rgba(42, 45, 50, 0.85);
+  padding: 23px;
+  line-height: 1.4;
+  z-index: 200;
+  pointer-events: none;
+  color: rgba(250, 251, 255, 0.95);
+  font-size: 16px;
+  font-family: "Helvetica Neue", "Segoe UI", Helvetica, Arial, sans-serif;
+  max-width: 300px;
+  -webkit-transition: top 0.4s, bottom 0.4s;
+  transition: top 0.4s, bottom 0.4s; }
+
+.s-alert-box.s-alert-show {
+  pointer-events: auto; }
+
+.s-alert-box a {
+  color: inherit;
+  opacity: 0.7;
+  font-weight: 700; }
+
+.s-alert-box a:hover,
+.s-alert-box a:focus {
+  opacity: 1; }
+
+.s-alert-box p {
+  margin: 0; }
+
+.s-alert-box.s-alert-show,
+.s-alert-box.s-alert-visible {
+  pointer-events: auto; }
+
+.s-alert-close {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  overflow: hidden;
+  text-indent: 100%;
+  cursor: pointer;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden; }
+
+.s-alert-close:hover,
+.s-alert-close:focus {
+  outline: none; }
+
+.s-alert-close::before,
+.s-alert-close::after {
+  content: "";
+  position: absolute;
+  width: 3px;
+  height: 60%;
+  top: 50%;
+  left: 50%;
+  background: white; }
+
+.s-alert-close:hover::before,
+.s-alert-close:hover::after {
+  background: white; }
+
+.s-alert-close::before {
+  -webkit-transform: translate(-50%, -50%) rotate(45deg);
+  transform: translate(-50%, -50%) rotate(45deg); }
+
+.s-alert-close::after {
+  -webkit-transform: translate(-50%, -50%) rotate(-45deg);
+  transform: translate(-50%, -50%) rotate(-45deg); }
+
+/* positions */
+.s-alert-bottom-left {
+  top: auto;
+  right: auto;
+  bottom: 30px;
+  left: 30px; }
+
+.s-alert-top-left {
+  top: 30px;
+  right: auto;
+  bottom: auto;
+  left: 30px; }
+
+.s-alert-top-right {
+  top: 30px;
+  right: 30px;
+  bottom: auto;
+  left: auto; }
+
+.s-alert-bottom-right {
+  top: auto;
+  right: 30px;
+  bottom: 30px;
+  left: auto; }
+
+.s-alert-bottom {
+  width: 100%;
+  max-width: 100%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: auto; }
+
+.s-alert-top {
+  width: 100%;
+  max-width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: auto; }
+
+/* conditions */
+.s-alert-info {
+  background: #00a2d3;
+  color: white; }
+
+.s-alert-success {
+  background: #27ae60;
+  color: white; }
+
+.s-alert-warning {
+  background: #f1c40f;
+  color: white; }
+
+.s-alert-error {
+  background: #e74c3c;
+  color: white; }
+
+[class^="s-alert-effect-"].s-alert-hide,
+[class*=" s-alert-effect-"].s-alert-hide {
+  -webkit-animation-direction: reverse;
+  animation-direction: reverse; }
+
+/* height measurement helper */
+.s-alert-box-height {
+  visibility: hidden;
+  position: fixed; }
+
+.analyze-container {
+  padding: 8px; }
+
+/* floats */
+/* simple */
+.btn-space {
+  margin: 5px; }
+
+/* border */
+/* cursor */
+/* radius */
+/* background */
+/* color */
+/* simple fonts */
+/* Templates */
+.btn-outline {
+  background-color: transparent;
+  color: inherit;
+  transition: all 0.3s;
+  font-weight: bold; }
+
+.btn-white.btn-outline {
+  color: white; }
+
+.btn-default.btn-outline {
+  color: #4d4d4d; }
+
+.btn-success.btn-outline {
+  color: #5cb85c; }
+
+.btn-info.btn-outline {
+  color: #47a2ff; }
+
+.btn-warning.btn-outline {
+  color: #f0ad4e; }
+
+.btn-danger.btn-outline {
+  color: #d9534f; }
+
+.btn-outline.active {
+  color: white; }
+
+.btn-default.btn-outline.active {
+  color: black !important; }
+
+.btn-primary.btn-outline:hover,
+.btn-success.btn-outline:hover,
+.btn-info.btn-outline:hover,
+.btn-warning.btn-outline:hover,
+.btn-danger.btn-outline:hover,
+.btn-primary.btn-outline:active,
+.btn-success.btn-outline:active,
+.btn-info.btn-outline:active,
+.btn-warning.btn-outline:active,
+.btn-danger.btn-outline:active {
+  color: white; }
+
+/* Custom MyCrib Buttons */
+.btn-default-outline {
+  border: 1px solid rgba(171, 171, 171, 0.49);
+  font-size: 14px;
+  font-weight: normal;
+  color: #848484; }
+
+.btn-lg {
+  height: 50px;
+  font-size: 18px; }
+
+.btn-default-blank {
+  font-size: 14px;
+  font-weight: normal;
+  color: #848484; }
+
+.btn-default-blank {
+  font-size: 14px;
+  font-weight: normal;
+  color: #848484; }
+
+a.comment-icon {
+  color: #dfdfdf;
+  font-size: 25px; }
+
+a.like-icon {
+  color: #ff4b4b;
+  font-size: 25px; }
+
+@font-face {
+  font-family: "Myriad Set Pro";
+  font-style: normal;
+  font-weight: 100;
+  src: local("??"), url("/fonts/myriad-set-pro_ultralight.woff") format("woff"), url("/fonts/myriad-set-pro_ultralight.ttf") format("truetype"); }
+
+/* Copyright (c) 1992 Adobe Systems Incorporated. All Rights Reserved. Myriad is a trademark of Adobe Systems Incorporated. */
+@font-face {
+  font-family: "Myriad Set Pro";
+  font-style: italic;
+  font-weight: 100;
+  src: local("??"), url("/fonts/myriad-set-pro_ultralight-italic.woff") format("woff"), url("/fonts/myriad-set-pro_ultralight-italic.ttf") format("truetype"); }
+
+/* Copyright (c) 1992 Adobe Systems Incorporated. All Rights Reserved. Myriad is a trademark of Adobe Systems Incorporated. */
+@font-face {
+  font-family: "Myriad Set Pro 100";
+  src: url("/fonts/myriad-set-pro_ultralight.eot"); }
+
+/* Copyright (c) 1992 Adobe Systems Incorporated. All Rights Reserved. Myriad is a trademark of Adobe Systems Incorporated. */
+@font-face {
+  font-family: "Myriad Set Pro";
+  font-style: normal;
+  font-weight: 200;
+  src: local("??"), url("/fonts/myriad-set-pro_thin.woff") format("woff"), url("/fonts/myriad-set-pro_thin.ttf") format("truetype"); }
+
+/* Copyright (c) 1992 Adobe Systems Incorporated. All Rights Reserved. Myriad is a trademark of Adobe Systems Incorporated. */
+@font-face {
+  font-family: "Myriad Set Pro";
+  font-style: italic;
+  font-weight: 200;
+  src: local("??"), url("/fonts/myriad-set-pro_thin-italic.woff") format("woff"), url("/fonts/myriad-set-pro_thin-italic.ttf") format("truetype"); }
+
+/* Copyright (c) 1992 Adobe Systems Incorporated. All Rights Reserved. Myriad is a trademark of Adobe Systems Incorporated. */
+@font-face {
+  font-family: "Myriad Set Pro 200";
+  src: url("/fonts/myriad-set-pro_thin.eot"); }
+
+/* Copyright (c) 1992 Adobe Systems Incorporated. All Rights Reserved. Myriad is a trademark of Adobe Systems Incorporated. */
+@font-face {
+  font-family: "Myriad Set Pro";
+  font-style: italic;
+  font-weight: 400;
+  src: local("??"), url("/fonts/myriad-set-pro_text-italic.woff") format("woff"), url("/fonts/myriad-set-pro_text-italic.ttf") format("truetype"); }
+
+/* Copyright (c) 1992 Adobe Systems Incorporated. All Rights Reserved. Myriad is a trademark of Adobe Systems Incorporated. */
+@font-face {
+  font-family: "Myriad Set Pro";
+  font-style: normal;
+  font-weight: 500;
+  src: local("??"), url("/fonts/myriad-set-pro_medium.woff") format("woff"), url("/fonts/myriad-set-pro_medium.ttf") format("truetype"); }
+
+/* Copyright (c) 1992 Adobe Systems Incorporated. All Rights Reserved. Myriad is a trademark of Adobe Systems Incorporated. */
+@font-face {
+  font-family: "Myriad Set Pro";
+  font-style: italic;
+  font-weight: 500;
+  src: local("??"), url("/fonts/myriad-set-pro_medium-italic.woff") format("woff"), url("/fonts/myriad-set-pro_medium-italic.ttf") format("truetype"); }
+
+/* Copyright (c) 1992 Adobe Systems Incorporated. All Rights Reserved. Myriad is a trademark of Adobe Systems Incorporated. */
+@font-face {
+  font-family: "Myriad Set Pro 500";
+  src: url("/fonts/myriad-set-pro_medium.eot"); }
+
+/* Copyright (c) 1992 Adobe Systems Incorporated. All Rights Reserved. Myriad is a trademark of Adobe Systems Incorporated. */
+@font-face {
+  font-family: "Myriad Set Pro";
+  font-style: normal;
+  font-weight: 600;
+  src: local("??"), url("/fonts/myriad-set-pro_semibold.woff") format("woff"), url("/fonts/myriad-set-pro_semibold.ttf") format("truetype"); }
+
+/* Copyright (c) 1992 Adobe Systems Incorporated. All Rights Reserved. Myriad is a trademark of Adobe Systems Incorporated. */
+@font-face {
+  font-family: "Myriad Set Pro";
+  font-style: italic;
+  font-weight: 600;
+  src: local("??"), url("/fonts/myriad-set-pro_semibold-italic.woff") format("woff"), url("/fonts/myriad-set-pro_semibold-italic.ttf") format("truetype"); }
+
+/* Copyright (c) 1992 Adobe Systems Incorporated. All Rights Reserved. Myriad is a trademark of Adobe Systems Incorporated. */
+@font-face {
+  font-family: "Myriad Set Pro 600";
+  src: url("/fonts/myriad-set-pro_semibold.eot"); }
+
+/* Copyright (c) 1992 Adobe Systems Incorporated. All Rights Reserved. Myriad is a trademark of Adobe Systems Incorporated. */
+@font-face {
+  font-family: "Myriad Set Pro";
+  font-style: normal;
+  font-weight: 700;
+  src: local("??"), url("/fonts/myriad-set-pro_bold.woff") format("woff"), url("/fonts/myriad-set-pro_bold.ttf") format("truetype"); }
+
+/* Copyright (c) 1992 Adobe Systems Incorporated. All Rights Reserved. Myriad is a trademark of Adobe Systems Incorporated. */
+@font-face {
+  font-family: "Myriad Set Pro";
+  font-style: italic;
+  font-weight: 700;
+  src: local("??"), url("/fonts/myriad-set-pro_bold-italic.woff") format("woff"), url("/fonts/myriad-set-pro_bold-italic.ttf") format("truetype"); }
+
+/* Copyright (c) 1992 Adobe Systems Incorporated. All Rights Reserved. Myriad is a trademark of Adobe Systems Incorporated. */
+@font-face {
+  font-family: "Myriad Set Pro 700";
+  src: url("/fonts/myriad-set-pro_bold.eot"); }
+
+/* Copyright (c) 1992 Adobe Systems Incorporated. All Rights Reserved. Myriad is a trademark of Adobe Systems Incorporated. */
+@font-face {
+  font-family: "Myriad Set Pro";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/myriad-set-pro_text.eot");
+  src: local("??"), url("/fonts/myriad-set-pro_text.woff") format("woff"), url("/fonts/myriad-set-pro_text.ttf") format("truetype"); }
+
+/* Copyright (c) 1992 Adobe Systems Incorporated. All Rights Reserved. Myriad is a trademark of Adobe Systems Incorporated. */
+
+.simple-message {
+  width: 100%; }
+
+/* floats */
+/* simple */
+.simple-message {
+  text-align: center; }
+
+.simple-message {
+  margin: 15px; }
+
+/* border */
+/* cursor */
+.pointer {
+  cursor: pointer; }
+
+/* radius */
+.container {
+  border-radius: 6px; }
+
+/* background */
+.container {
+  background-color: white; }
+
+/* color */
+.text-normal {
+  color: #373737; }
+
+/* simple fonts */
+.simple-message {
+  font-size: 26px; }
+
+/* Templates */
+.container {
+  margin: auto;
+  padding: 0px;
+  max-width: 1200px; }
+
+html {
+  background-color: #d6d9e2;
+  color: #262626; }
+
+.row {
+  margin-left: 0 !important;
+  margin-right: 0 !important; }
+
+body {
+  font-family: "Helvetica Neue", "Myriad Set Pro", "Lucida Grande", "Helvetica", "Arial", "Verdana", "sans-serif";
+  font-size: 16px;
+  line-height: 1.42857;
+  background-color: #d6d9e2; }
+
+.float-left {
+  float: left; }
+
+.float-right {
+  float: right; }
+
+.clear-both {
+  clear: both; }
+
+.default-pointer {
+  cursor: default !important; }
+
+.hidden-upload-file {
+  position: absolute;
+  top: -1000px;
+  left: -1000px; }
+
+.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+  padding-left: 0;
+  padding-right: 0; }
+
+a {
+  color: #466277; }
+
+.iframe {
+  width: 100%;
+  height: 2000px;
+  border: 0px; }
+
+.left-panel .logo {
+  width: 100%; }
+
+.right-panel .online-users-content {
+  height: 100%; }
+
+/* floats */
+.left-panel .close-nav, .right-panel .online, .right-panel .offline {
+  float: right; }
+
+/* simple */
+.left-panel, .right-panel .online-users-content {
+  visibility: hidden; }
+
+.left-panel .close-nav, .left-panel .logo a {
+  font-weight: bold; }
+
+.left-panel a {
+  font-weight: 200; }
+
+.main-container, .right-panel .online-users-btn, .content-panel {
+  position: absolute; }
+
+.left-panel, .right-panel {
+  position: fixed; }
+
+.left-panel .logo {
+  text-align: center; }
+
+.left-panel a {
+  text-decoration: none; }
+
+.left-panel a {
+  display: block; }
+
+/* border */
+/* cursor */
+.left-panel .close-nav, .right-panel .online-users-btn {
+  cursor: pointer; }
+
+/* radius */
+/* background */
+.right-panel .online-users-content, .right-panel .online-users-btn {
+  background-color: white; }
+
+/* color */
+.left-panel a, .left-panel .close-nav {
+  color: white; }
+
+.right-panel .offline {
+  color: #cccccc; }
+
+.right-panel .online {
+  color: #5cb85c; }
+
+/* simple fonts */
+.normal-font-size {
+  font-size: 16px; }
+
+.left-panel a {
+  font-size: 26px; }
+
+.left-panel .close-nav, .left-panel .logo a, .right-panel .online-users-btn {
+  font-size: 32px; }
+
+/* Templates */
+.footer {
+  max-width: 700px;
+  margin: auto; }
+
+.not-found-container {
+  max-width: 700px;
+  margin: auto;
+  text-align: center;
+  font-size: 26px;
+  font-weight: bold; }
+
+html {
+  height: 100%; }
+
+body {
+  width: 100%;
+  height: 100%; }
+
+.main-container {
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  height: 100%; }
+
+.label-as-badge {
+  border-radius: 1em; }
+
+.left-panel {
+  background-color: rgba(255, 19, 19, 0.81);
+  transition: 100ms;
+  z-index: 10001;
+  left: -256px;
+  width: 256px;
+  height: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 15px; }
+  .left-panel ul {
+    list-style: none; }
+  .left-panel a {
+    padding: 5px; }
+
+.right-panel {
+  transition: 100ms;
+  z-index: 10000;
+  right: -256px;
+  width: 256px;
+  height: 100%;
+  -webkit-overflow-scrolling: touch;
+  border-left: 1px solid #cccccc; }
+  .right-panel .online-users-content {
+    overflow: auto; }
+  .right-panel .small-list-item {
+    min-height: 40px; }
+  .right-panel .online-users-btn {
+    z-index: 102;
+    top: 50%;
+    left: -49px;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    width: 50px;
+    padding: 7px;
+    box-shadow: -2px 0px 3px 0px rgba(0, 0, 0, 0.1); }
+
+.content-panel {
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  transition: 300ms; }
+
+
+/* floats */
+/* simple */
+/* border */
+/* cursor */
+/* radius */
+/* background */
+/* color */
+/* simple fonts */
+/* Templates */
+
+.navbar-default {
+  background-color: #ffffff; }
+
+.navbar {
+  border-radius: 0 !important;
+  border: none !important; }
+
+.container-fluid {
+  max-width: 1024px; }
+
+/* floats */
+/* simple */
+/* border */
+/* cursor */
+/* radius */
+/* background */
+/* color */
+/* simple fonts */
+/* Templates */
+
+.trade-container {
+  padding: 8px; }
+

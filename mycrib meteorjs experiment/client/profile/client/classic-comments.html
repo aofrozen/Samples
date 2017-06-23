@@ -1,0 +1,24 @@
+<template name="classicComments">
+    <div class="comments classic-comments">
+        <div class="comment-post">
+            <input class="form-control comment-field" type="text" placeholder="Write a comment...">
+        </div>
+        {{#each classicComments}}
+        <div class="comment-items">
+            <div class="comment-user">
+                <div class="user-avatar">
+                    <a href="/{{friendId}}"><img src="{{ userAvatar friendId }}" class=""></a>
+                </div>
+                <a href="/{{friendId}}">
+                    <div>{{_fullname friendId }}</div>
+                </a></div>
+            <div class="comment-body">
+                <div class="comment">{{{emoji body}}}</div>
+                <div class="comment-footer">
+                    {{#if _isOwner friendId 0 userId }}<a href="#" class="remove-comment  btn btn-default-outline" data-id="{{_id}}"><span class="glyphicon glyphicon-remove"></span></a>{{/if}}
+                    <span class="date">{{_dateFormat creationDate}}</span></div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</template>

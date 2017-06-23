@@ -1,0 +1,18 @@
+<template name="adminUsers">
+    <div class="admin-container">
+
+        {{#each users}}
+        <div class="small-list-item user-profile-btn" data-id="{{userId}}">
+            <div class="user-avatar">
+                <a href="/{{_urlname userId}}"><img src="{{userAvatar userId}}"></a>
+            </div>
+            <a href="/{{_urlname userId}}"><b>{{_fullname userId}}</b></a>
+            <div class="options">
+                <a href="#" class="btn btn-success btn-outline set-safe-account-btn" data-id="{{userId}}">Set as safe account</a>
+                <a href="#"
+                   class="btn btn-danger btn-outline disable-account-btn" data-id="{{userId}}">Disable account</a></div>
+        </div>
+        {{/each}}
+
+    </div>
+</template>

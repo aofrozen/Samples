@@ -1,0 +1,93 @@
+<template name="userProfile">
+    {{#unless isUserBlockingYou}}
+
+        {{#if _isProfileVideoWall _currentProfileId }}
+            <div class="profile-wall-container" style="position: relative; z-index: -99; width: 1200px; height: 675px">
+
+                <iframe frameborder="0" height="100%" width="100%"
+                        src="https://youtube.com/embed/{{_profileWallEmbedId _currentProfileId}}?autoplay=1&amp;controls=0&amp;showinfo=0&amp;autohide=1&amp;loop=1&amp;playerlist={{_profileWallEmbedId _currentProfileId}}">
+                </iframe>
+            </div>
+        {{else}}
+            <div class="profile-wall-container"
+                 style="background-image: url('http://img.mycrib.io/{{ profileWall }}')"></div>
+        {{/if}}
+        <!-- http://localhost:9333/{{ profileWall }} -->
+
+        <div class="profile-headline">
+            <div class="user col-xs-4">
+                <div class="avatar"><img class="" src="{{ userAvatar _currentProfileId }}"></div>
+            </div>
+            <div class="options col-xs-5 text-left" id="options">
+                <a href="/{{_urlname _currentProfileId}}"
+                   class="btn btn-lg {{isActiveRoute regex='userProfile|userTimeline' }}">Posts</a>
+                <!-- <a href="/{{_urlname _currentProfileId}}/about" class="btn btn-lg btn-default-blank {{isActiveRoute 'userAbout' }}">About</a> -->
+                <a href="/{{_urlname _currentProfileId}}/allphotos"
+                   class="btn btn-lg {{isActiveRoute regex='userPhotos|userPhotoTags|userAllPhotos' }}">{{ _numberFormat photoCount '0,0'}} Photos</a>
+                <a href="/{{_urlname _currentProfileId}}/friends"
+                   class="btn btn-lg {{isActiveRoute regex='userFriends' }}">{{ _numberFormat friendCount '0,0'}}
+                    Friends</a>
+            </div>
+            <div class="options col-xs-3 text-right" id="options">
+                {{#unless _isOwner _currentProfileId }}
+                    {{#if isFriend }}
+                        <a href="#" class="remove-friend btn btn-lg"><i class="fa fa-user-times"></i>
+                            Unfriend</a>
+                    {{else}}
+                        {{#if isFriendRequestSent }}
+                            <a href="#" id="addFriend" class="sent-friend-request btn btn-lg">Sent
+                                Friend Request</a>
+                        {{else}}
+                            <a href="#" id="addFriend" class="add-friend btn btn-lg"><i
+                                    class="fa fa-user-plus"></i> Add Friend</a>
+                        {{/if}}
+                    {{/if}}
+                {{/unless}}
+            </div>
+        </div>
+        <div class="profile-container">
+            <div class="col-xs-4">
+                <div class="main" id="main">
+
+                    <div class="name">{{ fullname }}</div>
+                    <div class="urlname">http://mycrib.io/{{ _urlname _currentProfileId }}</div>
+                    <div class="description">{{ description }}</div>
+                    <div class="details">
+                        {{ age }}<br>
+                        {{ location }}<br>
+                        {{ gender }}
+                    </div>
+                    <div class="contacts">
+                        <ul class="nav nav-pills">
+                            <li role="presentation">
+                                <a href="#" id="sendMessage" class="btn-outline btn-default send-message-btn"><span
+                                        class="glyphicon glyphicon-comment"></span> Message</a>
+                            </li>
+                            <li role="presentation" class="dropdown-toggle nav-item dropdown small-list-width">
+                                <a href="#" class="btn-outline btn-default profile-options-btn"
+                                   id="profile-options-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-h"></i></a>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li>
+                                        {{#if isUserBlocked}}
+                                            <a href="#" class="unblock-account-btn item">Unblock account</a>
+                                        {{else}}
+                                            <a href="#" class="block-account-btn item">Block account</a>
+                                        {{/if}}
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-8">
+                <div id="child">
+                    {{> yield region='child-space' }}
+                </div>
+            </div>
+        </div>
+    {{/unless}}
+    {{#if isUserBlockingYou}}
+        <h1>This user blocked you.</h1>
+    {{/if}}
+</template>

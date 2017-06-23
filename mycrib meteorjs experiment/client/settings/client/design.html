@@ -1,0 +1,89 @@
+<template name="designSettings">
+    <div class="nav-clear"></div>
+    <div class="settings-container">
+        {{> settingsSideNavigation }}
+        <div class="settings-form">
+            <div class="form-group">
+                <label for="upload-user-avatar">Upload user avatar</label>
+                <input id="upload-user-avatar" class="upload-user-avatar form-control" type="file" accept=".jpeg,.jpg">
+            </div>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{uploadUserAvatarProgress}}%;">
+                    {{uploadUserAvatarProgress}}%
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="profile-cover-options">Profile cover options</label>
+                <div class="form-inline">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="profile-cover-option" class="profile-cover-option" id="profile-video-wall" value="Video">
+                            Video
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="profile-cover-option" class="profile-cover-option" id="profile-photo-wall" value="Photo">
+                            Photo
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="profile-video-wall-container hidden">
+                <div class="form-group">
+                    <label for="profile-video-wall">
+                        Profile Cover
+                    </label>
+                    <input type="text" class="form-control" value="{{profileVideoWallUrl}}" placeholder="Ex: https://www.youtube.com/watch?v=YQHsXMglC9A&list=PL55713C70BA91BD6E" name="profile-video-wall-url" id="profile-video-wall-url">
+                </div>
+            </div>
+            <div class="profile-photo-wall-container hidden">
+            <div class="form-group">
+                <label for="upload-profile-wall">Upload profile cover</label>
+                    <input id="upload-profile-wall" class="upload-profile-wall form-control" type="file" accept=".jpeg,.jpg">
+                </div>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{uploadProfileWall}}%;">
+                    {{uploadProfileWall}}%
+                </div>
+            </div>
+                </div>
+            <div class="form-group">
+                <label for="home-cover-options">Home cover options</label>
+                <div class="form-inline">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="home-cover-option"  class="home-cover-option" id="home-video-wall" value="Video">
+                            Video
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="home-cover-option" class="home-cover-option" id="home-photo-wall" value="Photo">
+                            Photo
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="home-video-wall-container hidden">
+                <div class="form-group">
+                    <label for="profile-video-wall">
+                        Profile Cover
+                    </label>
+                    <input type="text" class="form-control" value="{{homeVideoWallUrl}}" placeholder="Ex: https://www.youtube.com/watch?v=YQHsXMglC9A&list=PL55713C70BA91BD6E" name="home-video-wall-url" id="home-video-wall-url">
+                </div>
+            </div>
+            <div class="home-photo-wall-container hidden">
+            <div class="form-group">
+                <label for="upload-home-wall">Upload home cover</label>
+                <input id="upload-home-wall" class="upload-home-wall form-control" type="file" accept=".jpeg,.jpg">
+            </div>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:{{ uploadHomeWallProgress }}%;">
+                    {{uploadHomeWallProgress}}%
+                </div>
+            </div>
+            </div>
+         </div>
+    </div>
+</template>

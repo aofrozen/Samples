@@ -1,0 +1,160 @@
+@import '../../client/stylesheets/mixins'
+@import '../../client/stylesheets/placeholders'
+@import '../../client/stylesheets/variables'
+#profile-options
+  .item
+    padding: 10px
+  .item:hover
+    background-color: #E8E8E8
+    cursor: pointer
+.profile-headline
+  +max-w(1200px)
+  +min-w(1000px)
+  +mar(auto)
+  position: relative
+  z-index: 3
+  +mar-b(10px)
+  +h(49px)
+  +bk-color(#FFF)
+  +bor-b(1px solid #EDEDED)
+  .user
+    .avatar
+      border-radius: 0
+      margin: auto
+      max-width: 170px
+      text-align: center
+      border: 7px solid #FFF
+      box-shadow: 0px 0px 2px rgba(0,0,0,0.4)
+      position: absolute
+      top: -90px
+      left: 0
+      right: 0
+      img
+        width: 100%
+  .options
+    padding-bottom: 5px
+    .btn
+      margin-right: 16px
+    .btn, .btn:visited
+      transition-duration: 100ms
+      border-radius: 0
+      z-index: 1
+    //@include box-shadow('none')
+    .btn:hover
+      z-index: 100
+      border-bottom: 3px solid #CCC
+    .btn:active, .btn.active
+      z-index: 10
+      -webkit-box-shadow: none
+      box-shadow: none
+      border-bottom: 3px solid #CCC
+.profile-wall-container
+  height: 400px
+  background-color: #00b3ee
+  max-width: 1200px
+  background-position: center
+  background-size: cover
+  position: relative
+  margin: auto
+  z-index: 1
+.profile-container
+  +max-w(1200px)
+  +min-w(1000px)
+  margin: auto
+  position: relative
+  background-color: transparent
+  //margin-top: 300px
+  z-index: 2
+  .main
+    top: 0
+    position: relative
+    z-index: 2
+    background-color: #FFF
+    //box-shadow: 0px 0px 2px rgba(0,0,0,0.4)
+    margin: auto
+    //+bottom-radius(6px)
+    .name
+      text-align: center
+      margin: auto
+      max-width: 300px
+      font-size: 26px
+      font-weight: bold
+      padding-top: 30px
+    .description
+      text-align: center
+      margin: auto
+      max-width: 300px
+      font-size: 26px
+      font-weight: bold
+      padding-top: 0px
+    .urlname
+      text-align: center
+      margin: auto
+      max-width: 300px
+      font-size: 18px
+      font-weight: 200
+      padding-top: 0px
+      color: #656565
+    .details
+      width: 260px
+      margin: auto
+      text-align: center
+      .item
+        padding: 20px
+        margin: auto
+        a:link
+          color: #000
+          text-decoration: none
+        .detail-numbers
+          font-size: 26px
+        .detail-name
+          font-size: 16px
+      ul
+        margin: 0
+        padding: 0
+        list-style: none
+      li
+        display: inline-block
+        text-align: center
+        width: 100px
+    .contacts
+      margin: auto
+      text-align: center
+      position: relative
+      li
+        width: 164px
+        float: none
+        display: inline-block
+      li.small-list-width a
+        width: 80px
+      a:link
+        border: 1px solid #CCC
+        margin: 15px
+    .events
+      border-bottom: 1px solid #CCC
+      .heading
+        font-size: 24px
+    .friends
+      border-bottom: 1px solid #CCC
+      .heading
+        font-size: 24px
+      ul
+        li
+          backgrond-color: #FFF
+  .profile-child-container
+    +min-h(350px)
+    //+max-w(800px)
+    @extend %center
+    .timeline
+      padding-top: 15px
+      position: relative
+      .heading
+        font-size: 24px
+        margin: auto
+        max-width: 900px
+        text-align: center
+      .item
+        padding: 15px
+        margin: auto
+        max-width: 900px
+

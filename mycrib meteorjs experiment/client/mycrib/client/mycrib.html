@@ -1,0 +1,174 @@
+<template name="mycrib">
+</template>
+<head>
+    <meta http-equiv="cleartype" content="on">
+    <meta name="MobileOptimized" content="320">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="///fonts.googleapis.com/css?family=Exo+2:300italic,800,400,500,900"/>
+    <link rel="stylesheet" type="text/css" href="///fonts.googleapis.com/css?family=Lato:300"/>
+    <link rel="stylesheet" type="text/css" href="///fonts.googleapis.com/css?family=Open+Sans:700|Ledger"/>
+</head>
+<template name="main">
+    <main id="panel" class="content-panel" style="{{#if isActiveRoute 'mycrib' }}background-image:url(/img/mountains.jpg);background-size: cover; width: 100%;   height: 100%;padding: 0px;margin: 0px;{{/if}}">
+        <div class="left-panel">
+            <nav id="menu">
+                <section>
+                    <div class="logo"><a href="/">mycrib</a></div>
+                </section>
+                {{#if currentUser }}
+                <section>
+                    <ul>
+                        <li>
+                            <a href="/webmaster"><span class="glyphicon glyphicon-screenshot"></span> Report bugs</a>
+                        </li>
+                        <li>
+                            <a href="/help"><span class="glyphicon glyphicon-question-sign"></span> Help</a>
+                        </li>
+                        <li>
+                            <a href="/i/settings" class="{{ isActivePath '/i/settings/account' }}"><span class="glyphicon glyphicon-cog"></span> Settings</a>
+                        </li>
+                        <li>
+                            <a href="/i/logout"><span class="glyphicon glyphicon-off"></span> Log out</a>
+                        </li>
+                    </ul>
+                </section>
+                {{/if}}
+                <!--
+                <section>
+                    <ul>
+                        <li>
+                            <a href="/about">About</a>
+                        </li>
+                        <li>
+                            <a href="/privacy-policy">Privacy Policy</a>
+                        </li>
+                        <li>
+                            <a href="/terms">Terms</a>
+                        </li>
+                    </ul>
+                </section>
+                -->
+            </nav>
+        </div>
+        {{#if currentUser }}
+        <div class="right-panel">
+            <div class="online-users-btn"><i class="fa fa-users"></i></div>
+            <div class="online-users-content">
+                {{#each friendStatusList }}
+                <div class="small-list-item user-online-item" data-id="{{ _id }}" data-userid="{{ friendId }}">
+                    <div class="small-avatar">
+                        <img src="{{ userAvatar friendId }}" class="img-circle">
+                    </div>
+                    <div class="body">
+                        <div class="name">
+                            {{ friendFullname }}
+                        </div>
+                        {{#if friendOnline }}
+                        <div class="online"><i class="fa fa-circle"></i></div>
+                        {{else}}
+                        <div class="offline"><i class="fa fa-circle-o"></i></div>
+                        {{/if}}
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+        {{/if}}
+        <div class="main-container">
+            {{#if currentUser }}
+            <div class="navbar-fixed-top">
+                <nav class="mycrib-navbar" role="navigation">
+                    <ul class="navbar-left">
+                        <li>
+                            <div class="logo"><img src="/img/logo.png" style="height:60px;"></div>
+                        </li>
+                    </ul>
+                    <ul class="mycrib-navbar-right">
+                        <li class="nav-item">
+                            <a href="/i/home" class="home-nav-btn circle"><span class="glyphicon glyphicon-home"></span>
+                                <span class="nav-name">Home</span></a></li>
+                        <li class="nav-item">
+                            <a href="/{{ _urlname _userId }}" class="profile-nav-btn circle"><span class="glyphicon glyphicon-user"></span>
+                                <span class="nav-name">Profile</span></a></li>
+                        <li class="nav-item">
+                            <a href="/i/new-users" class="new-users-btn circle"><i class="fa fa-users"></i>
+                                <span class="nav-name">New Users</span></a></li>
+                        <li class="nav-item  dropdown">
+                            <a href="#" class="message-nav-btn circle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-comment"></span>{{#if newMessagesExist }} {{#with
+                                                                                                                                                                                          newMessages}}<span class="label label-danger label-as-badge normal-font-size">{{count}}</span>{{/with}} {{/if}}</a>
+
+                            <div class="dropdown-menu dropdown-menu-right">{{> messageInbox }}</div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a href="#" class="notification-nav-btn circle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-globe"></span>{{#if newNotificationsExist }} {{#with
+                                                                                                                                                                        newNotifications}}<span class="label label-danger label-as-badge normal-font-size"> {{count}}</span>{{/with}} {{/if}}</a>
+
+                            <div class="dropdown-menu dropdown-menu-right">{{> webNotifications}}</div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a href="#" class="settings-nav-btn circle dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li>
+                                    <a href="/i/settings/account" class="{{ isActivePath '/i/settings/account' }}">Settings</a>
+                                </li>
+                                <li>
+                                    <a href="/webmaster">Report bugs</a>
+                                </li>
+                                <li>
+                                    <a href="/help">Help</a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li>
+                                    <a href="/i/logout">Log out</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            {{else}}
+            <div class="navbar-fixed-top">
+                <nav class="mycrib-navbar" role="navigation">
+                    <ul class="mycrib-navbar-right">
+                        <li class="nav-item"><a href="/i/login" class="default-btn btn-lg btn">Log in</a></li>
+                        <li class="nav-item"><a href="/i/register" class="default-btn btn-lg btn">Sign up</a></li>
+                        <li class="nav-item">
+                            <a href="#" id="togglebtn" class="settings-nav-btn circle" onclick="return false;"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            {{/if}}
+            {{#if isNavigationClearRequired }}
+            <div class="navigation-clear"></div>
+            {{/if}}
+            {{#if isActiveRoute 'mycrib' }}
+            <div style="margin-top: 190px;padding:0px;text-align:center;background-color:#FFF;">
+                <p><img src="/img/logo.png"/><br/>
+                    <br/>
+
+                <div style="font-size: 24px;">MyCrib (ALPHA) is open.</div>
+
+
+                <br/>
+                <br/>
+                <br/>
+                </p>
+            </div>
+            <div style="margin-top:200px;text-align:center;"><img src="/img/meteor.png"></div>
+            {{else}}
+            {{> yield }}
+            {{/if}}
+
+        </div>
+    </main>
+    {{#if mb_template_exists}}
+    <div class="modal-box-overlay"></div>
+    <div class="modal-box">{{> UI.dynamic template=mb_template }}</div>
+    {{/if}}
+    {{> sAlert}}
+</template>

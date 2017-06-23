@@ -1,0 +1,12 @@
+<template name="profileTimeline">
+
+    <div class="feed-container">
+        <div class="home-feed">
+            {{> reTimeline timelineData=timelineData }}
+        </div>
+        {{#if isTimelineLoaded}}
+            {{> loader }}
+        {{/if}}
+    </div>
+</template>
+

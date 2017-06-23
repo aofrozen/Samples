@@ -1,0 +1,45 @@
+.settings-container
+  margin: auto
+  max-width: 900px
+  min-height: 500px
+  .settings-form
+    padding: 15px
+    background-color: #ffffff
+    /* col(5/7, gutter: 1) */
+    width: (5/7)*100%
+    border-radius: 3px
+    float: right
+    vertical-align: top
+    border: 1px solid #CCC
+    height: calc(100% - 50px)
+  .side-navigation
+    background-color: #ffffff
+    border-radius: 3px
+    /* col(2/7, gutter: 1) */
+    border: 1px solid #CCC
+    float: left
+    width: 25%
+    vertical-align: top
+    height: calc(100% - 50px)
+    ul
+      padding: 0
+      margin: 0
+    li
+      list-style: none
+      border-bottom: 1px solid #CCC
+      a:link, a:visited
+        display: block
+        padding: 10px
+        text-decoration: none
+        color: #000000
+      a:hover
+        background-color: #e7e7e7
+      a:active
+        background-color: #428bca
+        color: #ffffff
+      a.active:link
+        display: block
+        padding: 10px
+        text-decoration: none
+        color: #000000
+        font-weight: bold

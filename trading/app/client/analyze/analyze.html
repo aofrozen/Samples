@@ -1,0 +1,178 @@
+<template name="analyze">
+    <div class="container">
+        <div class="analyze-container">
+            <div class="form-group">
+                <label for="cPair">Currency Pair</label>
+                <select name="cPair" id="cPair" class="form-control cPair">
+                    <option value="EURUSD">EURUSD</option>
+                    <option value="USDCAD">USDCAD</option>
+                    <option value="GBPUSD">GBPUSD</option>
+                    <option value="EURCAD">EURCAD</option>
+                    <option value="GBPUSD">GBPUSD</option>
+                    <option value="EURGBP">EURGBP</option>
+                    <option value="GBPCAD">GBPCAD</option>
+                    <option value="GBPJPY">GBPJPY</option>
+                    <option value="AUDJPY">AUDJPY</option>
+                    <option value="EURJPY">EURJPY</option>
+                    <option value="AUDUSD">AUDUSD</option>
+                    <option value="USDJPY">USDJPY</option>
+                    <option value="USDCHF">USDCHF</option>
+                    <option value="NZDUSD">NZDUSD</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="spread">Spread</label>
+                <input type="text" class="form-control spread" id="spread" placeholder="Spread pips">
+            </div>
+            <div class="form-group">
+                <label for="ratio">Ratio Minimum</label>
+                <input type="text" class="form-control ratio" id="ratio" placeholder="Ratio">
+            </div>
+            <div class="form-group">
+                <input type="button" class="form-control btn-primary btn-outline btn-lg analyze-btn"
+                       value="Analyze CSV">
+            </div>
+
+            {{#if isLoading }}
+                <div class="text-center">
+                    <img src="/img/76.gif">
+                </div>
+            {{/if}}
+            <div style="{{#if isLoading }}display:none;{{/if}} {{#if
+                    dataExists }}display:block;{{else}}display:none;{{/if}}">
+                <div class="text-center"><h3>HL Hours Chart</h3></div>
+                <div class="hlhours-chart" style="height:350px;"></div>
+                {{{multiplicationLine HLHours 'hour(s)' true}}}
+                {{{multiplicationLine pRatio 'R' false true}}}
+                <div class="text-center"><h3>Take Profit, Stoploss, and Local Pips Chart</h3></div>
+                <div class="takeprofit-chart" style="height:350px;"></div>
+                <div class="text-center"><h3>Take Profit Probability</h3></div>
+                {{{multiplicationLine TP 'pip'}}}
+                <div class="text-center"><h3>Stoploss Probability</h3></div>
+                <div class="row">
+                    <div class="col-sm-12" style="height: 400px;">
+                        <div class="stoplossChart text-center" id="stoplossChart"></div>
+                    </div>
+                </div>
+                {{{multiplicationLine SL 'pip'}}}
+                <div class="text-center"><h3>Local Probability</h3></div>
+                {{{multiplicationLine SLL 'pip'}}}
+                <div class="text-center"><h3>HL Chart and TP</h3></div>
+                <div class="hl-chart" style="height:350px;"></div>
+                <div class="text-center"><h3>HL Probability</h3></div>
+                {{{multiplicationLine highLow 'pip'}}}
+                <div class="text-center"><h3>Sky & Tok HL Hours Chart</h3></div>
+                <div class="sthours-chart" style="height:350px;"></div>
+                <div class="text-center"><h3>Syd & Tok First Hours Chart</h3></div>
+                {{{multiplicationLine STFHours 'hour(s)'}}}
+                <div class="text-center"><h3>Syd & Tok Last Hours Chart</h3></div>
+                {{{multiplicationLine STLHours 'hour(s)'}}}
+                <div class="text-center"><h3>Syd & Tok Take Profit Probability</h3></div>
+                {{{multiplicationLine STTakeProfit 'pip'}}}
+                <div class="text-center"><h3>Syd & Tok Stoploss Probability</h3></div>
+                {{{multiplicationLine STStoploss 'pip'}}}
+                <div class="text-center"><h3>Syd & Tok HL Probability</h3></div>
+                {{{multiplicationLine STHL 'pip'}}}
+
+
+                <div class="text-center"><h3>Lon & NY HL Hours Chart</h3></div>
+                <div class="lnhours-chart" style="height:350px;"></div>
+                <div class="text-center"><h3>Lon & NY First Hours Chart</h3></div>
+                {{{multiplicationLine LNFHours 'hour(s)'}}}
+                <div class="text-center"><h3>Lon & NY Last Hours Chart</h3></div>
+                {{{multiplicationLine LNLHours 'hour(s)'}}}
+                <div class="text-center"><h3>Lon & NY Take Profit Probability</h3></div>
+                {{{multiplicationLine LNTakeProfit 'pip'}}}
+                <div class="text-center"><h3>Lon & NY Stoploss Probability</h3></div>
+                {{{multiplicationLine LNStoploss 'pip'}}}
+                <div class="text-center"><h3>Lon & NY HL Probability</h3></div>
+                {{{multiplicationLine LNHL 'pip'}}}
+
+                <!--
+                 <div class="text-center"><h3>TP/SL</h3></div>
+       {{#with probabilityData }}{{{multiplicationTable takeProfit stoploss}}}{{/with}}
+-->
+
+                <table class="table table-bordered">
+                    <thead>
+
+                    <tr>
+                        <th class="col-xs-1">Date</th>
+                        <th class="col-xs-1">High-Low Pip</th>
+                        <th class="col-xs-1">Open-High Pip</th>
+                        <th class="col-xs-1">Open-Low Pip</th>
+                        <th class="col-xs-1">Open-Close Pip</th>
+                        <!--<th class="col-xs-1">HLOrder</th>-->
+                        <!--<th class="col-xs-1">Middle Pip</th> -->
+                    </tr>
+                    <!--
+                    <tr>
+                        <th class="col-xs-1">Date</th>
+                        <th class="col-xs-1">High-Low Pip</th>
+                        <th class="col-xs-1">Open-High Pip</th>
+                        <th class="col-xs-1">Open-Low Pip</th>
+                        <th class="col-xs-1">Open-Close Pip</th>
+                        <th class="col-xs-1">Ratio</th>
+                        <th class="col-xs-1">HLOrder</th>
+                    </tr>-->
+                    </thead>
+                    <tbody>
+                    <!--
+            {{#each analyzedData}}
+                <tr style="background-color:#e6ffe6;">
+                    <td class="col-xs-1">{{formatDate date}}</td>
+                    <td class="col-xs-1">{{highLowPip}} pips</td>
+                    <td class="col-xs-1">{{{formatPips openHighPip openLowPip highLowPip 'green'}}}</td>
+                    <td class="col-xs-1">{{{formatPips openLowPip openHighPip highLowPip 'red'}}}</td>
+                    <td class="col-xs-1">{{{formatPips openClosePip false highLowPip}}} ({{openPrice}}/O)</td>
+                    <td class="col-xs-1">{{{ratio}}}R</td>
+                    <td class="col-xs-1">{{#with HLOrder}}{{HLOrder}}/{{localPips}} pips/{{sHours}}H/{{hours}}H
+                        Later/{{{favor}}}{{/with}}</td>
+                    {{ setLoading @index}}
+                </tr>
+            {{/each}}
+            -->
+                    {{#each analyzedData}}
+                        <tr style="background-color:#e6ffe6;">
+                            <td class="col-xs-1">{{formatDate date}}</td>
+                            <td class="col-xs-1">{{highLowPip}} pips</td>
+                            <td class="col-xs-1">{{{formatPips openHighPip openLowPip highLowPip 'green'}}}
+                                / {{{formatPips highHighPip false false}}} HH <!--/ {{{ HLLPip }}} L2H -->
+                            </td>
+                            <td class="col-xs-1">{{{formatPips openLowPip openHighPip highLowPip 'red'}}}/ {{{formatPips
+                                    lowLowPip false false}}} LL <!-- / {{{ LHHPip }}} H2L -->
+                            </td>
+                            {{#if isLow openClosePip}}
+                                <td class="col-xs-1">{{{formatPips openClosePip false openLowPip}}} <!-- ({{openPrice}}/O) -->
+                                </td>
+                            {{else}}
+                                <td class="col-xs-1">{{{formatPips openClosePip false openHighPip}}} <!-- ({{openPrice}}/O) -->
+                                </td>
+                            {{/if}}
+                                <!--<td class="col-xs-1">{{#with HLOrder}}{{HLOrder}}/{{localPips}} pips/{{sHours}}H/{{hours}}H
+                                Later/{{{favor}}}{{/with}}</td>-->
+                            <!-- <td class="col-xs-1">{{{formatPips middlePip false false }}}</td> -->
+                            {{ setLoading @index}}
+                        </tr>
+                        {{#each HLOCZ}}
+                            <tr style="background-color:#ffffcc;">
+                                <td class="col-xs-1">{{loc}}</td>
+                                <td class="col-xs-1">{{hl}}</td>
+                                <td class="col-xs-1">{{{formatPips oh ol hl 'green'}}}<br>{{HLOrderFilter 'high'
+                                                                                                          hlOrder}}
+                                    <br> {{hhr}} hour(s)
+                                </td>
+                                <td class="col-xs-1">{{{formatPips ol oh hl 'red'}}}<br> {{HLOrderFilter 'low' hlOrder}}
+                                    <br> {{lhr}} hour(s)
+                                </td>
+                                <td class="col-xs-1">{{{formatPips oc false hl}}}</td>
+                            </tr>
+                        {{/each}}
+                    {{/each}}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</template>

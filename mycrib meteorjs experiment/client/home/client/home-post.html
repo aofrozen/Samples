@@ -1,0 +1,66 @@
+<template name="homePost">
+    <!--
+    <div class="filter-options">
+        <ul class="nav nav nav-tabs nav-justified">
+            <li role="presentation" class="update-status-option"><a href="#">Update Status</a></li>
+            <li role="presentation" class="journal-option"><a href="">Journal</a></li>
+        </ul>
+    </div>
+    -->
+    <div>
+        <form class="home-post-form post">
+            <div class="header">
+                <div class="user-avatar">
+                    <img src="{{ userAvatar _userId }}" class="">
+                </div>
+                <div class="info">
+                    <div class="name">
+                        <span>{{_fullname _userId}}</span>
+                    </div>
+                </div>
+            </div>
+
+                <div class="clear-both"></div>
+                <textarea class="form-control post-data body" placeholder="What's on your mind?"></textarea>
+
+                <div class="footer">
+                    {{#if isEmbedActive }}
+                    <div class="embed-attachment embed-media-item">
+                        {{#with embedData }}
+                        {{#with data}}
+                        {{#if checkEmbedType 'video'}}
+                            {{{ html }}}
+                            <div class="title">{{ title }}</div>
+                        {{/if}}
+                        {{#if checkEmbedType 'link'}}
+                         {{#if thumbnail_url}}
+                             <div class="embed-thumbnail"><img src="{{ thumbnail_url }}"></div>
+                        {{/if}}
+                        <div class="title">{{ title }}</div>
+                        <div class="description">{{ description }}</div>
+                        {{/if}}
+                        {{/with}}
+                        {{/with}}
+                    </div>
+                    {{/if}}
+                    <div class="media form-group">
+                        <input type="text" value="" placeholder="Ex: https://www.youtube.com/watch?v=3yCSlq9fOD4"
+                               class="form-control embed-link hidden">
+                    </div>
+                    <div class="insert-options col-xs-8 text-left">
+                        <a href="#" class="btn btn-default-outline btn-lg photo-btn">
+                            <span class="glyphicon glyphicon-camera"></span> Add Photo
+                        </a>
+                        <a href="#" class="btn btn-default-outline btn-lg embed-btn">
+                            <span class="glyphicon glyphicon-globe"></span> Add Link
+                        </a>
+                    </div>
+                    <div class="post-btn col-sm-4 text-right">
+                        <a href="#" class="btn btn-default-outline btn-lg home-post-btn">Post</a>
+                    </div>
+                    <div class="clear-both"></div>
+                </div>
+            <div class="clear-both"></div>
+        </form>
+    </div>
+</template>

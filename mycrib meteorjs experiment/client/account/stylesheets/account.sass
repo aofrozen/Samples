@@ -1,0 +1,11 @@
+@import "../../client/stylesheets/mixins.sass"
+@import "../../client/stylesheets/placeholders.sass"
+
+.login-container, .register-container, .passwordRecovery-container
+  @extend %account-container
+  .main
+    @extend %normal-radius, %bk-white
+    +pad(15px)
+    +mar-t(50px)
+
+

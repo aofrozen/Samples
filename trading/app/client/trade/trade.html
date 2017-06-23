@@ -1,0 +1,342 @@
+<template name="trade">
+    <div style="margin-bottom:30px;" class="container">
+        <div class="trade-container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row">
+                    <div class="col-xs-12 text-center"><h3>{{instrument}}</h3></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 text-center"><h3 style="color:green;">{{HL}} pips a HL day</h3>
+                    </div>
+                    <div class="col-xs-6 text-center"><h3 style="color:red;">{{tradeCount}} trades a day</h3>
+                    </div>
+                </div>
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>Ask</th>
+                        <th>Bid</th>
+                        <th>Spread</th>
+                        <th>HL Position Percent</th>
+                        <th>Last</th>
+                        <th>Tick</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Open</td>
+                        <td>{{openAsk}}</td>
+                        <td>{{openBid}}</td>
+                        <td>{{openSpread}}</td>
+                        <td>N/A</td>
+                        <td>{{_dateFormat openTime}}</td>
+                        <td>{{_dateAgo openTime}}</td>
+                    </tr>
+                    <tr>
+                        <td>Open-High</td>
+                        <td>{{highAsk}}</td>
+                        <td>{{highBid}}</td>
+                        <td>{{highSpread}}</td>
+                        <td>100%</td>
+                        <td>{{_dateAgoC openTime highDate}}</td>
+                        <td>{{_dateAgo highDate}}</td>
+                    </tr>
+                    <tr>
+                        <td>Open-Low</td>
+                        <td>{{lowAsk}}</td>
+                        <td>{{lowBid}}</td>
+                        <td>{{lowSpread}}</td>
+                        <td>0%</td>
+                        <td>{{_dateAgoC openTime lowDate}}</td>
+                        <td>{{_dateAgo lowDate}}</td>
+                    </tr>
+                    <tr>
+                        <td>Close</td>
+                        <td>{{closeAsk}}</td>
+                        <td>{{closeBid}}</td>
+                        <td>{{closeSpread}}</td>
+                        <td>{{closeHL}}%</td>
+                        <td>{{_dateAgoC openTime nowDate}}</td>
+                        <td>{{_dateAgo nowDate}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group btn-space">
+                    <input type="button" class="form-control btn-default btn-outline btn-lg  prepare-market-order-btn"
+                           value="Prepare Trade">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group btn-space">
+                    <input type="button" class="form-control btn-success btn-outline btn-lg confirm-buy-trade-btn" value="Buy">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group btn-space">
+                    <input type="button" class="form-control btn-success btn-outline btn-lg confirm-sell-trade-btn" value="Sell">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group btn-space">
+                    <input type="button" class="form-control btn-danger btn-outline btn-lg confirm-close-all-trades-btn" value="Close All Trades">
+                </div>
+            </div>
+
+        </div>
+            <div class="row">
+                <h2 class="text-center">Trade Rules</h2>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label for="startDate">Start Date</label>
+                    <input type="datetime-local" class="form-control start-date" id="start-date" value="{{startDate}}">
+                </div>
+                <div class="form-group">
+                    <label for="endDate">End Date</label>
+                    <input type="datetime-local" class="form-control end-date" id="end-date" value="{{endDate}}">
+                </div>
+                <div class="form-group">
+                    <label for="startUpperPrice">Start Upper Price</label>
+                    <input type="text" class="form-control start-upper-price" id="start-upper-price" placeholder="Ex: 1.000" value="{{startUpperPrice}}">
+                </div>
+                <div class="form-group">
+                    <label for="endUpperPrice">End Upper Price</label>
+                    <input type="text" class="form-control end-upper-price" id="end-upper-price" placeholder="Ex: 1.000" value="{{endUpperPrice}}">
+                </div>
+                <div class="form-group">
+                    <label for="startLowerPrice">Start Lower Price</label>
+                    <input type="text" class="form-control start-lower-price" id="start-lower-price" placeholder="Ex: 1.000" value="{{startLowerPrice}}">
+                </div>
+                <div class="form-group">
+                    <label for="endLowerPrice">End Lower Price</label>
+                    <input type="text" class="form-control end-lower-price" id="end-lower-price" placeholder="Ex: 1.000" value="{{endLowerPrice}}">
+                </div>
+                <div class="form-group">
+                    <label for="stoplossMarginPips">Stoploss Margin Pips</label>
+                    <input type="text" class="form-control stoploss-margin-pips" id="stoploss-margin-pips" placeholder="Ex: 25" value="{{stoplossMarginPips}}">
+                </div>
+                <div class="radio">
+                <label><input type="radio" name="side" class="side" value="sell" checked="{{selectSide 'sell'}}">Sell Side</label>
+                </div>
+                <div class="radio">
+                <label><input type="radio" name="side" class="side" value="buy" checked="{{selectSide 'buy'}}">Buy Side</label>
+                </div>
+                <div class="form-group">
+                    <label for="profit-action">Profit Action:</label>
+                    <select class="form-control profit-action" id="profit-action">
+                        <option selected="{{selectProfitAction 'Trade'}}">Trade</option>
+                        <option selected="{{selectProfitAction 'Close'}}">Close</option>
+                        <option selected="{{selectProfitAction 'Free'}}">Free</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Pip Height</th>
+                        <th>Pip Per Hour</th>
+                        <th>Upper Pip</th>
+                        <th>Upper Price</th>
+                        <th>Lower Pip</th>
+                        <th>Lower Price</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group btn-space">
+                        <input type="button" class="form-control btn-success btn-outline btn-lg save-auto-pilot-btn" value="Save autopilot">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group btn-space">
+                        <input type="button" class="form-control btn-success btn-outline btn-lg toggle-auto-pilot-btn" value="{{toggleAutoPilot}}">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group btn-space">
+                        <input type="button" class="form-control btn-success btn-outline btn-lg reset-auto-pilot-btn" value="Reset autopilot">
+                    </div>
+                </div>
+            </div>
+
+        <div class="row" style="margin-top:30px;">
+            <div class="text-center"><h3>Open Trade(s)</h3></div>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th class="col-xs-1">Date</th>
+                    <th class="xol-xs-1">Instrument</th>
+                    <th class="col-xs-1">Side</th>
+                    <th class="col-xs-1">Units</th>
+                    <th class="col-xs-1">Price</th>
+                    <th class="col-xs-1">TP</th>
+                    <th class="col-xs-1">SL</th>
+                    <th class="col-xs-1">P/L Pip</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{#each openTrades }}
+                    <tr>
+                        <td class="col-xs-1">{{time}}</td>
+                        <td class="col-xs-1">{{instrument}}</td>
+                        <td class="col-xs-1">{{side}}</td>
+                        <td class="col-xs-1">{{units}}</td>
+                        <td class="col-xs-1">{{price}}</td>
+                        <td class="col-xs-1">{{takeProfit}} ({{pipConverter price takeProfit}} pip)</td>
+                        <td class="col-xs-1">{{stoploss}} ({{pipConverter price stoploss}} pip)</td>
+                        <td class="col-xs-1">{{PL side price}}</td>
+                    </tr>
+                {{/each}}
+                </tbody>
+            </table>
+        </div>
+        </div>
+    </div>
+    <div class="modal fade" id="market-order-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Prepare Trade</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="instrument">Instrument</label>
+                        <select class="form-control instrument" id="instrument">
+                            <option value="EUR_USD" selected="{{selectInstrument 'EUR_USD'}}">EURUSD</option>
+                            <option value="USD_CAD" selected="{{selectInstrument 'USD_CAD'}}">USDCAD</option>
+                            <option value="GBP_USD" selected="{{selectInstrument 'GBP_USD'}}">GBPUSD</option>
+                            <option value="EUR_CAD" selected="{{selectInstrument 'EUR_CAD'}}">EURCAD</option>
+                            <option value="EUR_GBP" selected="{{selectInstrument 'EUR_GBP'}}">EURGBP</option>
+                            <option value="GBP_CAD" selected="{{selectInstrument 'GBP_CAD'}}">GBPCAD</option>
+                            <option value="GBP_JPY" selected="{{selectInstrument 'GBP_JPY'}}">GBPJPY</option>
+                            <option value="AUD_JPY" selected="{{selectInstrument 'AUD_JPY'}}">AUDJPY</option>
+                            <option value="EUR_JPY" selected="{{selectInstrument 'EUR_JPY'}}">EURJPY</option>
+                            <option value="AUD_USD" selected="{{selectInstrument 'AUD_USD'}}">AUDUSD</option>
+                            <option value="USD_JPY" selected="{{selectInstrument 'USD_JPY'}}">USDJPY</option>
+                            <option value="USD_CHF" selected="{{selectInstrument 'USD_CHF'}}">USDCHF</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="leverage">Leverage</label>
+                        <input value="{{leverage}}" type="text" class="form-control leverage" id="leverage"
+                               placeholder="Ex: 50">
+                    </div>
+                    <div class="form-group">
+                        <label for="unit">Unit Percent</label>
+                        <input value="{{unitPercent}}" type="text" class="form-control unitPercent" id="unit"
+                               placeholder="Unit %">
+                    </div>
+                    <div class="form-group">
+                        <label for="risk">Risk Percent</label>
+                        <input value="{{riskPercent}}" type="text" class="form-control riskPercent" id="risk"
+                               placeholder="Risk %">
+                    </div>
+                    <div class="form-group">
+                        <label for="tp">Take Profit Pips</label>
+                        <input value={{takeProfitB}} type="text" class="form-control takeProfit" id="tp"
+                               placeholder="Take profit pips">
+                    </div>
+                    <div class="form-group">
+                        <label for="sl">Stoploss Pips</label>
+                        <input value="{{stoplossB}}" type="text" class="form-control stoploss" id="sl"
+                               placeholder="Stoploss pips">
+                    </div>
+                    <div class="form-group">
+                        <label for="spread">Spread Pips Max</label>
+                        <input value={{spread}} type="text" class="form-control spread" id="spread"
+                               placeholder="Spread pips max">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline btn-primary save-premarket-order-btn">Save all changes</button>
+                    <button type="button" class="btn btn-outline btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="sell-confirmation-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Sell Confirmation</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-4">Unit Percent: </div>
+                        <div class="col-xs-4">{{unitPercent}}%</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-4">Risk Percent: </div>
+                        <div class="col-xs-4"> {{riskPercent}}%</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-4">Stoploss: </div>
+                        <div class="col-xs-4"> {{stoplossB}} pips</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-4">Take Profit: </div>
+                        <div class="col-xs-4">{{takeProfitB}} pips</div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline btn-success sell-trade-btn">Sell</button>
+                    <button type="button" class="btn btn-outline btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="buy-confirmation-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Buy Confirmation</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-4">Unit Percent: </div>
+                        <div class="col-xs-4">{{unitPercent}}%</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-4">Risk Percent: </div>
+                        <div class="col-xs-4"> {{riskPercent}}%</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-4">Stoploss: </div>
+                        <div class="col-xs-4"> {{stoplossB}} pips</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-4">Take Profit: </div>
+                        <div class="col-xs-4">{{takeProfitB}} pips</div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline btn-success buy-trade-btn">Buy</button>
+                    <button type="button" class="btn btn-outline btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="close-all-trades-confirmation-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Close All Trades Confirmation</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline btn-danger close-all-trades-btn">Close All Trades</button>
+                    <button type="button" class="btn btn-outline btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

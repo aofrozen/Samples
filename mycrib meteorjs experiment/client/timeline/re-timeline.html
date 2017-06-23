@@ -1,0 +1,83 @@
+<template name="reTimeline">
+  <div class="timeline">
+    {{#each timelineData }}
+      <div class="item">
+        <div class="header">
+          <div class="user-avatar">
+            <a href="/{{ _urlname userId}}"><img class="" src="{{ userAvatar userId }}"></a>
+          </div>
+          <ul class="dropdown-options dropdown-toggle">
+            <li>
+              <a aria-expanded="false" aria-haspopup="true" class="btn btn-default-blank" data-toggle="dropdown" href="#">
+                <span class="glyphicon glyphicon-chevron-down"></span>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-right">
+                {{#if _isOwner userId}}<li>
+                    <a class="remove-timeline-post pointer" data-id="{{_id}}" href="#">
+                      Delete this
+                    </a>
+                </li>
+                {{/if}}
+                <li>
+                    <a href="#">Report (coming soon)</a>
+                </li>
+              </ul>
+            </li>
+        </ul>
+        <div class="info">
+          <div>
+            <div class="name">
+              <a href="/{{_urlname userId}}">{{ _fullname userId }}</a>
+            </div>
+          </div>
+
+          <div class="date">
+            {{_dateFormat creationDate}}
+          </div>
+        </div>
+      </div>
+      <div class="body">{{{emoji body}}}</div>
+      {{#if embedExists }}
+        <div class="embed-media-item">
+          {{#if isEmbedVideo }}
+            <div class="embed-video-btn pointer" data-id="{{_id}}">
+              {{#with embed }}
+                <div class="embed-thumbnail">
+                  <img src="{{ thumbnailUrl }}">
+                  <div class="player-icon">
+                    <span class="glyphicon glyphicon-play"></span>
+                  </div>
+                </div>
+                <div class="title">{{title}}
+                  <span class="glyphicon glyphicon-film"></span>
+                </div>
+              {{/with }}
+            </div>
+            {{else}}
+            <div class="embed-article-btn pointer" data-id="{{_id}}">
+              {{#with embed }}
+                <div class="embed-thumbnail">
+                  <img src="{{ thumbnailUrl }}">
+                </div>
+                <div class="article">
+                  <div class="title">{{title}}</div>
+                  <div class="description">{{description}}</div>
+                </div>
+              {{/with }}
+            </div>
+          {{/if}}
+        </div>
+      {{/if}}
+      <div class="footer">
+        <!--
+                    <a href="#" class="like-icon">0
+                        <span class="glyphicon glyphicon-heart"></span></a>
+                        -->
+      </div>
+      {{> reComments comments=comments serviceId=_id serviceName='timeline' parentUserId=userId commentCount=commentCount}}
+    </div>
+
+    <div class="clear-both"></div>
+  {{/each}}
+</div>
+</template>

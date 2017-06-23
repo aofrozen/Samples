@@ -1,0 +1,9 @@
+<template name="emailNotificationsSettings">
+    <div class="nav-clear"></div>
+    <div class="settings-container">
+        {{> settingsSideNavigation }}
+        <div class="settings-form">
+            {{> quickForm id="email-notifications-settings-form" type="method" meteormethod="settings.updateEmailNotifications" doc=emailNotificationsData schema=sc.emailNotificationsSettingsForm buttonContent="Save Changes" }}
+        </div>
+    </div>
+</template>
